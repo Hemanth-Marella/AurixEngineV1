@@ -1,0 +1,12 @@
+langchain
+langchain-community
+langchain-core
+langchain-groq
+pypdf
+qdrant-client
+python-dotenv
+fastapi
+uvicorn[standard]
+requests
+rank-bm25
+pwdlib
