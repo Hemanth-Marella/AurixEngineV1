@@ -9,7 +9,7 @@ for page_num, page in enumerate(doc, start=1):
 
     data = page.get_text("dict")
 
-    chapter_name = []   # ✅ move OUTSIDE block loop
+    chapter_name = []   # move OUTSIDE block loop
 
     for block in data["blocks"]:
 
@@ -21,11 +21,14 @@ for page_num, page in enumerate(doc, start=1):
                 max_font = 0
 
                 for span in line["spans"]:
-                    full_text += span["text"]
-                    max_font = max(max_font, span["size"])
+                    text = span['text']
+                    font_size = span["size"]
+                    font_name = span["font"]
 
-                if max_font > 20:
-                    print("Text:", full_text, "| font size:", max_font)
-                    chapter_name.append(full_text)
+                    print(
+                        "text " , text,
+                        "font_size " , font_size,
+                        "font_name " , font_name
+                    )
 
-    print(f"Page {page_num} chapters:", chapter_name)
+    # print(f"Page {page_num} chapters:", chapter_name)
