@@ -5,9 +5,10 @@ file_path = "D:\projects\personalProject\Education\EducationChatbotServer\data\9
 
 class PdfToDocument:
 
-    def __init__(self):
+    def __init__(self,file_path):
 
         self.loader = None
+        self.all_documents = []
 
         self.getfileDetails = GetFileName(file_path)
 
@@ -22,5 +23,12 @@ class PdfToDocument:
         print("file is :" ,self.file)
 
         self.loader = pymupdf.open(self.file)
+        for page in self.loader:
+            self.all_documents.append(page)
 
-pdf = PdfToDocument()
+        return self.all_documents
+    
+# pdf = PdfToDocument(file_path=file_path)
+# for page in pdf.all_documents[:3]:
+#     text = page.get_text()
+#     print(text)
