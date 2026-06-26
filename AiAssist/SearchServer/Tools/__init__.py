@@ -1,1 +1,1 @@
-# from .BiologyMetadata import BiologyDocumentMetadata
+from .BiologyMetadata import BiologyDocumentMetadata

@@ -43,6 +43,8 @@ class MongoDB:
         self.db = self.client["AurixDataBase"]
         self.Aurix_collection = self.db["DocumentMetadata"]
 
+        
+
 # mongodb = MongoDB()
 
 # from motor.motor_asyncio import AsyncIOMotorClient
