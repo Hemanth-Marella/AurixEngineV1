@@ -1,0 +1,1 @@
+from ..PdfMetadataExtractor.BiologyMetadata import BiologyDocumentMetadata

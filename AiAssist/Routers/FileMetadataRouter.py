@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi import APIRouter
 from SearchServer.MongoDb.FileMetadataConnection import MongoDB
-from SearchServer.Tools.BiologyMetadata import BiologyDocumentMetadata
+from SearchServer.PdfMetadataExtractor.BiologyMetadata import BiologyDocumentMetadata
 
 # app = FastAPI()
 # router = APIRouter()
@@ -31,9 +31,6 @@ async def create_file_metadata():
             "sub_topics":sub_topics
         }
     )
-
-    # if result:
-    #     print("inserted")
 
     return {
         "chapter_name":chapter_name,

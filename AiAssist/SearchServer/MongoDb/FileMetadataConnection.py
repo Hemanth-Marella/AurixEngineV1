@@ -41,7 +41,7 @@ class MongoDB:
         self.client = AsyncIOMotorClient(f"mongodb://{db_host}:{db_port}")
 
         self.db = self.client["AurixDataBase"]
-        self.Aurix_collection = self.db["DocumentMetadata"]
+        self.Aurix_collection = self.db["DocumentMetadata"]  # DocumentMetadata collecion variable name is Aurix_COllection
 
         
 

@@ -24,7 +24,7 @@ class ClientConnect:
             print("error is ",e)
 
 
-test = ClientConnect()
-# test.connection_checking()
-if test:
-    print("connect123")
+# test = ClientConnect()
+# # test.connection_checking()
+# if test:
+#     print("connect123")

@@ -1,1 +1,0 @@
-from .BiologyMetadata import BiologyDocumentMetadata
