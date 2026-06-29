@@ -1,5 +1,5 @@
 import pymupdf
-from .pdfFile import GetFileName
+from .Pdf_Validator import PdfValidator
 from langchain_community.document_loaders import PyMuPDFLoader
 
 file_path = "D:\projects\personalProject\Education\EducationChatbotServer\data\9thclass\Biology\9_biology1.pdf"
@@ -17,7 +17,7 @@ class PdfToDocument:
         self.raw_documents = []
         self.embedding_documents = []
 
-        self.getfileDetails = GetFileName(file_path)
+        self.getfileDetails = PdfValidator(file_path)
         self.filename = self.getfileDetails.file_name
         self.file = self.getfileDetails.file
 
@@ -34,7 +34,7 @@ class PdfToDocument:
         except Exception as e:
             print("error is ", e)
     
-    def load_pdf_to_documents(self):
+    def load_pdf_to_documents(self,chapter_name):
 
         try:
             self.file_loader = PyMuPDFLoader(file_path=self.file)
@@ -43,6 +43,7 @@ class PdfToDocument:
             for doc in self.documents:
                 page = doc.metadata['page']
                 doc.metadata["page_no"] = page + 1
+                doc.metadata["chapter_name"]=chapter_name
             self.embedding_documents.extend(self.documents)
 
             return self.embedding_documents

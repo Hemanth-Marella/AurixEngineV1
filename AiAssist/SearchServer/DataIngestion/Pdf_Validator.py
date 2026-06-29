@@ -1,6 +1,6 @@
 from pathlib import Path
 
-class GetFileName:
+class PdfValidator:
 
     def __init__(self,file):
         self.file = file

@@ -1,5 +1,5 @@
-# from .ClientConnection import ClientConnect   # for modular coding
-from QdrantConnection.ClientConnection import ClientConnect  # for individual checking
+from .ClientConnection import ClientConnect   # for modular coding
+# from VectorDB.ClientConnection import ClientConnect  # for individual checking
 from qdrant_client import models
 
 class Biology:
@@ -9,7 +9,7 @@ class Biology:
         self.collection_name = collection_name
         self.collection = None
         self.client = ClientConnect()
-        self.getClient = self.client.qdrant_connection
+        self.getClient = self.client.connection_checking()
 
     def createCollection(self):
 
@@ -27,7 +27,7 @@ class Biology:
                     collection_name=self.collection_name,
                     vectors_config={
                         "embedding_vectors":models.VectorParams(
-                            size=385,
+                            size=384,
                             distance=models.Distance.COSINE
                         )
                     },
@@ -38,7 +38,7 @@ class Biology:
                     }
                 )
                 print(f"existing collections :,{self.getClient.get_collections()}")
-
+            return self.collection_name
         except Exception as e:
             print("error is : ",e)
             

@@ -1,0 +1,1 @@
+from .AvalancheEffect import FileHasher

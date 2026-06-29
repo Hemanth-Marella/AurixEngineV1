@@ -8,9 +8,9 @@ class ClientConnect:
 
     def __init__(self):
         self.qdrant_connection = None
-        self._connection_checking()  # connection method with private
+        # self.connection_checking()  # connection method with private
 
-    def _connection_checking(self): # connection is there or not checking
+    def connection_checking(self): # connection is there or not checking
         try:
             if self.qdrant_connection is None:
 
