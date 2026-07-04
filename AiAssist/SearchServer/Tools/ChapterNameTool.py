@@ -1,29 +1,18 @@
-import asyncio
-from bson import ObjectId
-from MongoDb.FileMetadataConnection import MongoDB
+from langchain_core.tools import tool
+from ..MongoDb.FileMetadataConnection import MongoDB
 
-
-async def get_chapter_name(document_id: str):
+@tool
+async def chapter_name_tool(file_hash: str) -> str:
+    """
+    Returns the chapter name for the given file hash.
+    """
     mongodb = MongoDB()
 
     document = await mongodb.Aurix_collection.find_one(
-        {"_id": ObjectId(document_id)}
+        {"file_hash": file_hash}
     )
 
-    print(document)
+    if document:
+        return document["chapter_name"]
 
-    if document is None:
-        return None
-
-    return document["chapter_name"]
-
-
-async def main():
-    document_id = "6a3ddf24de351f42f45c5ff0"
-
-    chapter_name = await get_chapter_name(document_id)
-    print(chapter_name)
-
-
-if __name__ == "__main__":
-    asyncio.run(main())
+    return "Chapter not found."

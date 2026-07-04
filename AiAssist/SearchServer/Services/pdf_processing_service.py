@@ -73,13 +73,14 @@ class PdfProcessingService:
             }
         else:
             return{
-                "status" : "duplicate"
+                "status" : "duplicate",
+                "file_hash" : hash_value
             }
         
-file_path = "D:\projects\personalProject\Education\EducationChatbotServer\data\9thclass\Biology\9_biology2.pdf"
-async def main():
-    upload = PdfProcessingService(file_path=file_path)
-    get =await upload.upload_document()
-    print(get)
-if __name__ == "__main__":
-    asyncio.run(main())
+# file_path = "D:\projects\personalProject\Education\EducationChatbotServer\data\9thclass\Biology\9_biology2.pdf"
+# async def main():
+#     upload = PdfProcessingService(file_path=file_path)
+#     get =await upload.upload_document()
+#     print(get)
+# if __name__ == "__main__":
+#     asyncio.run(main())
