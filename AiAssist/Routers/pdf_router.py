@@ -5,17 +5,17 @@ import shutil
 
 router = APIRouter(prefix="/pdf", tags=["PDF"])
 
-UPLOAD_DIR = "uploads"
-os.makedirs(UPLOAD_DIR, exist_ok=True)
-
 @router.post("/upload")
 async def upload_pdf(file: UploadFile = File(...)):
-    file_path = os.path.join(UPLOAD_DIR, file.filename)
+    
+    # read the uploaded file into memory
+    pdf_bytes = await file.read()
 
-    with open(file_path, "wb") as buffer:
-        shutil.copyfileobj(file.file, buffer)
-
-    service = PdfProcessingService(file_path)
+    # pass bytes and filename to the service
+    service = PdfProcessingService(
+        pdf_bytes=pdf_bytes,
+        filename=file.filename
+    )
 
     result = await service.upload_document()
 

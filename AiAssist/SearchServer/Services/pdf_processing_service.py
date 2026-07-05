@@ -23,12 +23,12 @@ import asyncio
 
 class PdfProcessingService:
 
-    def __init__(self,file_path):
-        self.file = file_path
-        self.hasher = FileHasher(self.file)
+    def __init__(self,pdf_bytes:bytes,filename:str):
+        
+        self.hasher = FileHasher(pdf_bytes)
         self.mongodb = MongoDB()
-        self.document_metadata = BiologyDocumentMetadata(self.file)
-        self.adding_vactors = AddingVectorsToDb(self.file)
+        self.document_metadata = BiologyDocumentMetadata(pdf_bytes,filename)
+        self.adding_vactors = AddingVectorsToDb(pdf_bytes,filename)
         # self.router = create_file_metadata()
 
         # values

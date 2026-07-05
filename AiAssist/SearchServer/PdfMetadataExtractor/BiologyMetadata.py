@@ -5,21 +5,24 @@ import re
 
 class BiologyDocumentMetadata:
 
-    def __init__(self,file_path):
+    def __init__(self, pdf_bytes: bytes, filename: str):
 
         self.first_pages = None
         self.all_pages = None
+
         self.chapterName = None
         self.chapter_no = None
+
         self.topics = []
         self.all_details = []
         self.chaptername_details =[]
+        
         self.current_line = None
         self.sub_topic = None
         self.page_count = None
 
         # module 
-        self.raw_documents,self.total_pages = PdfToDocument(file_path).load_pdf_to_raw_documents()
+        self.raw_documents,self.total_pages = PdfToDocument(pdf_bytes,filename).load_pdf_to_raw_documents()
 
     def details_about_chapter(self):
         

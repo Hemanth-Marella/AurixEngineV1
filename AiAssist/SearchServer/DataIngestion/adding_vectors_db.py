@@ -19,11 +19,11 @@ import uuid
 # .
 class AddingVectorsToDb:
 
-    def __init__(self,file_path):
-        self.biology_collection = Biology()
+    def __init__(self,pdf_bytes:bytes,filename:str):
+        self.biology_collection = Biology() # collection
         self.client = ClientConnect()
         self.getClient = self.client.connection_checking()
-        self.process_pdf = PdfToDocument(file_path=file_path)
+        self.process_pdf = PdfToDocument(pdf_bytes,filename)
 
         self.documents = None
         self.chunks = None

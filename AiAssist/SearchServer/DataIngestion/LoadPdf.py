@@ -1,12 +1,12 @@
 import pymupdf
-from .Pdf_Validator import PdfValidator
-from langchain_community.document_loaders import PyMuPDFLoader
+from .Pdf_Validator import pdfValidator
+from langchain_core.documents import Document
 
 file_path = "D:\projects\personalProject\Education\EducationChatbotServer\data\9thclass\Biology\9_biology1.pdf"
 
 class PdfToDocument:
 
-    def __init__(self,file_path):
+    def __init__(self,pdf_bytes: bytes, filename: str):
 
         self.loader = None
         self.file_loader = None
@@ -17,14 +17,14 @@ class PdfToDocument:
         self.raw_documents = []
         self.embedding_documents = []
 
-        self.getfileDetails = PdfValidator(file_path)
-        self.filename = self.getfileDetails.file_name
-        self.file = self.getfileDetails.file
+        self.validator = pdfValidator(filename, pdf_bytes)
+        self.filename = self.validator.file_name
+        self.pdf_bytes = pdf_bytes
 
     def load_pdf_to_raw_documents(self):
 
         try:
-            self.loader = pymupdf.open(self.file)
+            self.loader = pymupdf.open(stream=self.pdf_bytes,filetype="pdf")
             self.page_count = self.loader.page_count
             # print(self.page_count)
             for page in self.loader:
@@ -37,14 +37,20 @@ class PdfToDocument:
     def load_pdf_to_documents(self,chapter_name):
 
         try:
-            self.file_loader = PyMuPDFLoader(file_path=self.file)
-            self.documents = self.file_loader.load()
+            self.file_loader = pymupdf.open(stream=self.pdf_bytes,filetype="pdf")
+            for page_number,page in enumerate(self.file_loader,start=1):
 
-            for doc in self.documents:
-                page = doc.metadata['page']
-                doc.metadata["page_no"] = page + 1
-                doc.metadata["chapter_name"]=chapter_name
-            self.embedding_documents.extend(self.documents)
+                text = page.get_text()
+                document = Document(
+                    page_content=text,
+                    metadata = {
+                        "page":page_number-1,
+                        "page_number" : page_number,
+                        "chapter_name":chapter_name
+                    }
+                )
+
+                self.embedding_documents.append(document)
 
             return self.embedding_documents
 
