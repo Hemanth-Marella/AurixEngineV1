@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from Routers.FileMetadataRouter import router
+from AiAssist.Routers.pdf_router import router
 
 app = FastAPI()
 
