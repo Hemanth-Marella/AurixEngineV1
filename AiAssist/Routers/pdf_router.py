@@ -1,7 +1,5 @@
 from ..SearchServer.Services.pdf_processing_service import PdfProcessingService
 from fastapi import APIRouter, UploadFile, File
-import os
-import shutil
 
 router = APIRouter(prefix="/pdf", tags=["PDF"])
 

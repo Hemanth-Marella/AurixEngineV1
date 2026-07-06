@@ -3,7 +3,8 @@ from fastapi.middleware.cors import CORSMiddleware
 
 def configure_middleware(app: FastAPI):
     origins = [
-        "https://aurix-engine-study-helper-ai.netlify.app"
+        "https://aurix-engine-study-helper-ai.netlify.app",
+        "http://localhost:3000"
     ]
 
     app.add_middleware(

@@ -49,22 +49,19 @@ class GenerationService:
                 {self.query}
 
                 Instructions:
-                1. Read the context carefully.
-                2. Answer only from the provided context.
-                3. Do not add information that is not present in the context.
-                4. If context is long add bullet points.
-                5. Give Answer More than 10 points which is more relevant to query.
-                4. If the answer cannot be found in the context, reply:
-                "The answer is not available in the provided chapter."
-                6. Give no relevant text
+                - Answer only from the given context.
+                - Keep the answer clear and grammatically correct.
+                - Use simple English.
+                - Give 9-10 sentences if needed for better understanding.
+                - Dont add extra information other than the context.
 
                 Answer:
                 """
         
         # response = self.llm.invoke(prompt)
         # return response.content
-        response_1 = self.llm.stream(prompt)
-        return response_1
+        stream_response = self.llm.stream(prompt)
+        return stream_response
         
 
 # query = input("Ask a Question : ")
