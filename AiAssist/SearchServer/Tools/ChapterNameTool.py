@@ -3,11 +3,15 @@ from ..MongoDb.FileMetadataConnection import MongoDB
 
 @tool
 async def chapter_name_tool(file_hash: str) -> str:
-    """
-    Returns the chapter name for the given file hash.
-    """
-    mongodb = MongoDB()
 
+    """
+    Use this tool when ever user ask a chapter name of the uploaded pdf.
+    The input should be the user's question , about the chapter name , and
+    the output is generated chapter name from mongo db
+    """
+    print("hemanth")
+    mongodb = MongoDB()
+    print("file hash is :",file_hash)
     document = await mongodb.Aurix_collection.find_one(
         {"file_hash": file_hash}
     )

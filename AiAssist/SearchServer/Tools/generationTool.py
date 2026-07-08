@@ -3,6 +3,8 @@ from ..Services import generation_service
 
 @tool
 def generation_tool(query: str) -> str:
+
+    
     """
     Answer questions using the indexed PDF documents.
 
@@ -11,5 +13,8 @@ def generation_tool(query: str) -> str:
     and the output is the generated answer based on the relevant document
     context.
     """
+
+    print("janu")
     service = generation_service.GenerationService(query)
+    
     return service.generate_answer()
