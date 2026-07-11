@@ -2,7 +2,7 @@ from langchain_core.tools import tool
 from ..Services import generation_service
 
 @tool
-def generation_tool(query: str) -> str:
+async def generation_tool(query: str,file_hash:str) -> str:
 
     
     """
@@ -16,5 +16,7 @@ def generation_tool(query: str) -> str:
 
     print("janu")
     service = generation_service.GenerationService(query)
+
+    result = await service.generate_answer()
     
-    return service.generate_answer()
+    return result

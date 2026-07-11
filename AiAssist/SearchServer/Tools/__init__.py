@@ -1,2 +1,4 @@
 from .ChapterNameTool import chapter_name_tool
 from .generationTool import generation_tool
+from .SubTopicTool import sub_topic_tool
+from .subTopicExplanationTool import sub_topic_explanation_tool

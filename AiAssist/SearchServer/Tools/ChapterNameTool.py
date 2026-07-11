@@ -11,12 +11,14 @@ async def chapter_name_tool(file_hash: str) -> str:
     """
     print("hemanth")
     mongodb = MongoDB()
-    print("file hash is :",file_hash)
+    # print("file hash is :",file_hash)
     document = await mongodb.Aurix_collection.find_one(
         {"file_hash": file_hash}
     )
 
     if document:
+        # print(document["chapter_name"])
         return document["chapter_name"]
+
 
     return "Chapter not found."

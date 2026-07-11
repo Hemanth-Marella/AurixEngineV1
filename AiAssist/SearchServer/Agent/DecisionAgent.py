@@ -6,7 +6,7 @@ import os
 
 load_dotenv()
 
-from ..Tools import generation_tool, chapter_name_tool
+from ..Tools import generation_tool, chapter_name_tool,sub_topic_tool ,sub_topic_explanation_tool
 
 # llm = ChatGoogleGenerativeAI(
 #     model="gemini-2.5-flash",
@@ -24,7 +24,9 @@ agent = create_agent(
     model=llm,
     tools=[
         generation_tool,
-        chapter_name_tool
+        chapter_name_tool,
+        sub_topic_tool,
+        sub_topic_explanation_tool
     ],
     system_prompt="""
     You are an educational assistant.

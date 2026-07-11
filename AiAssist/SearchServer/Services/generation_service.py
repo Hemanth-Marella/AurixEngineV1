@@ -22,7 +22,7 @@ class GenerationService:
         #     max_tokens=1024
         # )
 
-        llm = ChatGroq(
+        self.llm = ChatGroq(
             model="llama-3.1-8b-instant",
             api_key=os.getenv("AURIX_GROQ_API_KEY"),
             temperature=0.1,
@@ -32,7 +32,7 @@ class GenerationService:
         self.reranker = RerankingService(query)
         self.generate_rankings = self.reranker.get_rankings()
 
-    def generate_answer(self):
+    async def generate_answer(self):
 
         answers = []
         # chapter_name = ""
@@ -66,10 +66,10 @@ class GenerationService:
                 Answer:
                 """
         
-        # response = self.llm.invoke(prompt)
-        # return response.content
-        stream_response = self.llm.stream(prompt)
-        return stream_response
+        response = self.llm.invoke(prompt)
+        return response.content
+        # stream_response = self.llm.stream(prompt)
+        # return stream_response
         
 
 # query = input("Ask a Question : ")
