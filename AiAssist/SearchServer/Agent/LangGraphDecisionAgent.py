@@ -1,6 +1,7 @@
 from langchain_core.messages import HumanMessage
 from langchain_google_genai import ChatGoogleGenerativeAI
 from ..LanggraphTools import LanggraphState
+from langchain_groq import ChatGroq
 from dotenv import load_dotenv
 import os
 
@@ -11,6 +12,13 @@ llm = ChatGoogleGenerativeAI(
     google_api_key=os.getenv("AURIX_GEMINI_KEY"),
     temperature = 0
 )
+
+# llm = ChatGroq(
+#     model="llama-3.1-8b-instant",
+#     api_key=os.getenv("AURIX_GROQ_API_KEY"),
+#     temperature=0.1,
+#     max_tokens=1024
+# )
 
 async def langgrahDecisionAgent(state: LanggraphState):
 
@@ -25,7 +33,7 @@ async def langgrahDecisionAgent(state: LanggraphState):
         2. sub_topics
         - Returns all subtopics of the chapter.
 
-        3. explanation
+        3. explanations
         - Explains one or more subtopics.
 
         Your job is to return ONLY a Python list containing the node execution order.
@@ -42,11 +50,11 @@ async def langgrahDecisionAgent(state: LanggraphState):
 
         User: Explain all subtopics.
         Output:
-        ["sub_topics","explanation"]
+        ["sub_topics","explanations"]
 
         User: Give me chapter name, subtopics and explain everything.
         Output:
-        ["chapter_name","sub_topics","explanation"]
+        ["chapter_name","sub_topics","explanations"]
 
         User:
         {state["query"]}
@@ -57,6 +65,8 @@ async def langgrahDecisionAgent(state: LanggraphState):
     )
 
     execution_plan = eval(response.content)
+
+    print("execution plan :" , execution_plan)
 
     return {
         "execution_plan": execution_plan

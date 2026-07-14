@@ -1,7 +1,7 @@
 from ..LanggraphTools import sub_topic_explanation_tool
 from ..LanggraphTools import LanggraphState
 
-async def sub_topic_node(state:LanggraphState):
+async def sub_topic_explanation_node(state:LanggraphState):
 
     result = await sub_topic_explanation_tool.ainvoke(
         {
@@ -10,7 +10,8 @@ async def sub_topic_node(state:LanggraphState):
             'query':state['query']
         }
     )
-
+    state['execution_plan'].pop(0)
+    print(state)
     return {
-        'sub_topics':result
+        'explanations':result
     }

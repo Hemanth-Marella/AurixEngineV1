@@ -9,7 +9,7 @@ async def chapter_name_node(state:LanggraphState):
             "query": state["query"]
         }
     )
-
+    state['execution_plan'].pop(0) # remove the node after execution
     return {
         "chapter_name": result
     }

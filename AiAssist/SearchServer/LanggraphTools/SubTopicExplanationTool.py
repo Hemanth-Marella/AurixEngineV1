@@ -26,15 +26,10 @@ async def sub_topic_explanation_tool(file_hash: str,sub_topics:list[str],query:s
     - Returns the explanation for each subtopic.
     """
 
-    mongodb = MongoDB()
-    service = generation_service
-    document =await  mongodb.Aurix_collection.find_one(
-        {"file_hash":file_hash}
-    )
+    print("sub topic explanation")
 
-    if document:
-
-        sub_topics_list = document['sub_topics']
+    sub_topics_list = [topics for topics in sub_topics]
+    print("print sub topics list ",sub_topics_list)
 
     explanations = {}
 

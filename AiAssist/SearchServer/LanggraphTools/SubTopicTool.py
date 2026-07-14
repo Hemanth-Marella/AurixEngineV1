@@ -2,7 +2,7 @@ from langchain_core.tools import tool
 from ..MongoDb.FileMetadataConnection import MongoDB
 
 @tool
-async def sub_topic_tool(file_hash:str,chapter_name:str)  -> list[str]:
+async def sub_topic_tool(file_hash:str)  -> list[str]:
 
     """
     Use this tool whenever User ask a query or question about sub topics from the uploaded pdf.
@@ -16,7 +16,6 @@ async def sub_topic_tool(file_hash:str,chapter_name:str)  -> list[str]:
     document = await mongodb.Aurix_collection.find_one(
         {
         "file_hash": file_hash,
-        "chapter_name": chapter_name
         }
     )
 
