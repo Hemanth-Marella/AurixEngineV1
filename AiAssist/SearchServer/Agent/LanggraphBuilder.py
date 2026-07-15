@@ -4,7 +4,7 @@ from ..LanggraphTools import LanggraphState,RoutingFunction
 
 from ..Agent.LangGraphDecisionAgent import langgrahDecisionAgent
 
-from ..LanggraphNodes import ChapterNameNode,SubTopicExplanationNode,SubTopicNode,RouterNode
+from ..LanggraphNodes import ChapterNameNode,SubTopicExplanationNode,SubTopicNode,RouterNode,GenerationNode
 
 # THIS CREATES AN EMPTY GRAPH NO NODES IS INVOLVED START -> END
 graph_builder = StateGraph(LanggraphState)
@@ -17,6 +17,7 @@ graph_builder.add_node("router", RouterNode.router_node)
 graph_builder.add_node("chapter_name",ChapterNameNode.chapter_name_node)
 graph_builder.add_node("sub_topics",SubTopicNode.sub_topic_node)
 graph_builder.add_node("explanations",SubTopicExplanationNode.sub_topic_explanation_node)
+graph_builder.add_node("answer",GenerationNode.generation_node)
 
 
 # Flow  These are fixed graphs
@@ -45,15 +46,17 @@ graph_builder.add_conditional_edges(
         "chapter_name": "chapter_name",
         "sub_topics": "sub_topics",
         "explanations": "explanations",
+        "answer":"answer",
         END: END,  # IF ROUTE RETURNS END STOP GRAPH
     },
 )
 
 # Worker Nodes -> Router
 # chapter_name -> router -> sub_topics -> router -> explanations -> router
-# 
+# Here conditional edges return a one node and after completed that node it will switch to router
 graph_builder.add_edge("chapter_name", "router")  
 graph_builder.add_edge("sub_topics", "router")
 graph_builder.add_edge("explanations", "router")
+graph_builder.add_edge("answer","router")
 
 graph = graph_builder.compile()

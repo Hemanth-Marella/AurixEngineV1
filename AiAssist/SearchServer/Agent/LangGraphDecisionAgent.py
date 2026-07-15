@@ -23,20 +23,22 @@ llm = ChatGoogleGenerativeAI(
 async def langgrahDecisionAgent(state: LanggraphState):
 
     prompt = f"""
-        You are a routing agent.
+
+        You are educational assistant
 
         Available nodes:
 
         1. chapter_name
-        - Returns the chapter name.
+        - Returns only the chapter name.
 
         2. sub_topics
-        - Returns all subtopics of the chapter.
+        - Returns the list of subtopics.
 
         3. explanations
-        - Explains one or more subtopics.
+        - Explain one or more subtopics only when the user explicitly asks to explain subtopics.
 
-        Your job is to return ONLY a Python list containing the node execution order.
+        4. answer
+        - Answer any question about the PDF content.
 
         Examples:
 
@@ -44,7 +46,7 @@ async def langgrahDecisionAgent(state: LanggraphState):
         Output:
         ["chapter_name"]
 
-        User: Give me the subtopics.
+        User: List all subtopics.
         Output:
         ["sub_topics"]
 
@@ -52,9 +54,17 @@ async def langgrahDecisionAgent(state: LanggraphState):
         Output:
         ["sub_topics","explanations"]
 
-        User: Give me chapter name, subtopics and explain everything.
+        User: Why are plant tissues different from animal tissues?
         Output:
-        ["chapter_name","sub_topics","explanations"]
+        ["answer"]
+
+        User: What is photosynthesis?
+        Output:
+        ["answer"]
+
+        User: Explain osmosis.
+        Output:
+        ["answer"]
 
         User:
         {state["query"]}

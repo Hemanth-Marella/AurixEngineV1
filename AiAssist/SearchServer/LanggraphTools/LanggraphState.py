@@ -6,4 +6,5 @@ class LanggraphState(TypedDict):
     chapter_name: str
     sub_topics: list[str]
     explanations: dict[str, str]
+    answer:str
     execution_plan: list[str]

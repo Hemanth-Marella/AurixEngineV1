@@ -49,6 +49,7 @@ class RetrieveService:
         self.response = result.points
         return self.response
     
+    
 
     # FOR INDIVIDUALLY CHECKING
     # def dense_search(self):
