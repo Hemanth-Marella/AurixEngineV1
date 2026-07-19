@@ -64,6 +64,7 @@ class AddingVectorsToDb:
             print("collection name is :",collection_name)
             vectors = []
             for chunk in self.chunks:
+            # for chunk_index, chunk in enumerate(self.chunks):
                 vectors.append(
                     models.PointStruct(
                         id=str(uuid.uuid4()),
@@ -78,8 +79,9 @@ class AddingVectorsToDb:
                             )
                         },
                         payload={
-                            "page_no":chunk.metadata.get("page_no"),
+                            "page_no":chunk.metadata.get("page_number"),
                             "chapter_name":chunk.metadata.get("chapter_name"),
+                            # "chunk_index":chunk_index,
                             "text":chunk.page_content
                         }
                     )

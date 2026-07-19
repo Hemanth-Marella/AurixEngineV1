@@ -15,6 +15,7 @@ async def upload_pdf(file: UploadFile = File(...)):
         filename=file.filename
     )
 
+    # wait for return statement from upload_document file is uploaded or not
     result = await service.upload_document()
 
     return result

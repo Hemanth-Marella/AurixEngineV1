@@ -33,6 +33,7 @@ class PdfProcessingService:
 
         # values
         self.hash_value = None
+        self.chapter_name = None
 
     def generate_hash(self):
 
@@ -51,30 +52,33 @@ class PdfProcessingService:
 
         if document is None:
             self.document_metadata.details_about_chapter()
-            chapter_name = self.document_metadata.get_chapter_name()
+            self.chapter_name = self.document_metadata.get_chapter_name()
             chapter_no = self.document_metadata.get_chapter_no()
             total_pages = self.document_metadata.get_totalPages()
             sub_topics = self.document_metadata.get_subTopics()
             await self.mongodb.Aurix_collection.insert_one(
                 {
                     "file_hash": hash_value,
-                    "chapter_name":chapter_name,
+                    "chapter_name":self.chapter_name,
                     "chapter_no":chapter_no,
                     "total_pages":total_pages,
                     "sub_topics":sub_topics
                 }
             )
 
-            self.adding_vactors.add_vectors_to_cloud(chapter_name)
+            self.adding_vactors.add_vectors_to_cloud(self.chapter_name)
             return {
                 "status": "uploaded",
                 "file_hash": hash_value,
-                "chapter_name":chapter_name,
+                "chapter_name":self.chapter_name,
             }
         else:
+            self.chapter_name = document["chapter_name"]
+            print("chapter name is : ",self.chapter_name)
             return{
                 "status" : "duplicate",
-                "file_hash" : hash_value
+                "file_hash" : hash_value,
+                "chapter_name":self.chapter_name,
             }
         
 # file_path = "D:\projects\personalProject\Education\EducationChatbotServer\data\9thclass\Biology\9_biology2.pdf"

@@ -9,6 +9,7 @@ class RetrieveService:
     def __init__(self,query:str):
         self.user_query = query
         self.response = None
+        self.summary_response = None
 
         self.collection_class = Biology()
         self.q_client = self.collection_class.getClient
@@ -48,6 +49,30 @@ class RetrieveService:
 
         self.response = result.points
         return self.response
+    
+    async def summary_extraction_chunks(self,chapter_name:str):
+
+        result,_ = self.q_client.scroll(
+            collection_name=self.collection_name,
+            scroll_filter=models.Filter(
+                must=[
+                    models.FieldCondition(
+                        key="chapter_name",
+                        match=models.MatchValue(value=chapter_name)
+                    )
+                ],
+                
+            ),
+            with_payload=True,
+            limit=1000,   # or another value larger than your maximum chapter size
+            
+        )
+
+        self.summary_response = result
+
+        return self.summary_response
+
+        
     
     
 

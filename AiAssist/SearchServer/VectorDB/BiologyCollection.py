@@ -43,5 +43,5 @@ class Biology:
             print("error is : ",e)
             
 
-obj1 = Biology()
-obj1.createCollection()
+# obj1 = Biology()
+# obj1.createCollection()

@@ -20,6 +20,7 @@ class BiologyDocumentMetadata:
         self.current_line = None
         self.sub_topic = None
         self.page_count = None
+        self.query = None
 
         # module 
         self.raw_documents,self.total_pages = PdfToDocument(pdf_bytes,filename).load_pdf_to_raw_documents()
@@ -130,6 +131,7 @@ class BiologyDocumentMetadata:
     def get_totalPages(self):
         self.page_count = self.total_pages
         return self.page_count
+
 
 
 # file_path = "D:\projects\personalProject\Education\EducationChatbotServer\data\9thclass\Biology\9_biology1.pdf"
