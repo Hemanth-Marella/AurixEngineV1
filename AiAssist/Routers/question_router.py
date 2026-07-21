@@ -137,6 +137,7 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
 from ..SearchServer.Agent.LanggraphBuilder import graph
+from ..SearchServer.Services.chatHistoryService import ChatHistoryService
 
 
 router = APIRouter(
@@ -150,6 +151,7 @@ class QuestionRequest(BaseModel):
 
 @router.post("/question")
 async def user_question(request:QuestionRequest):
+
     initial_state = {
         "file_hash": request.file_hash,
         "query": request.query,
@@ -159,6 +161,21 @@ async def user_question(request:QuestionRequest):
         "execution_plan": []
     }
 
-    result = await graph.ainvoke(initial_state)
+    # the actual state values is come from graph.invoke . Here only update the state is happened when the node perform operation
+    # every nodes recieves this data only i mean graph.invoke(initialstate) data only
+    # the graph is execute here
+    
+    # Yes. graph.invoke() (or graph.ainvoke()) is responsible for:
+
+    # Creating the initial state from your input.
+    # Passing the current state to each node.
+    # Updating the state with each node's returned values.
+    # Sharing the updated state with subsequent nodes.
+    # Returning the final state after execution.
+    result = await graph.ainvoke(initial_state)  # here we are providing actual data to nodes and edges to perform 
+
+    service = ChatHistoryService(request.file_hash,request.query,result)
+
+    await service.chat_history()
 
     return result

@@ -1,7 +1,7 @@
 from ..LanggraphTools import chapter_name_tool,LanggraphState
 
 
-async def chapter_name_node(state:LanggraphState):
+async def load_memory_node(state:LanggraphState):
 
     result = await chapter_name_tool.ainvoke(
         {
@@ -11,5 +11,5 @@ async def chapter_name_node(state:LanggraphState):
     )
     state['execution_plan'].pop(0) # remove the node after execution
     return {
-        "chapter_name": result  # we updating the chapter name here to the state 
+        "memory": result  # we updating the chapter name here to the state 
     }

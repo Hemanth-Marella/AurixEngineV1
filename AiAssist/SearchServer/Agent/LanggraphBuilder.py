@@ -7,6 +7,7 @@ from ..Agent.LangGraphDecisionAgent import langgrahDecisionAgent
 from ..LanggraphNodes import ChapterNameNode,SubTopicExplanationNode,SubTopicNode,RouterNode,GenerationNode
 
 # THIS CREATES AN EMPTY GRAPH NO NODES IS INVOLVED START -> END
+# CREATE THE GRAPH . 
 graph_builder = StateGraph(LanggraphState)
 
 
@@ -59,4 +60,8 @@ graph_builder.add_edge("sub_topics", "router")
 graph_builder.add_edge("explanations", "router")
 graph_builder.add_edge("answer","router")
 
+
+# CREATE THE EXECUTABLE GRAPH
+# NODES ARE CONNECTED , EDGES ARE FIXED AND THE GRAPH IS READY TO RUN
+# this graph.compile will not share any values . It only builds the executable graph . 
 graph = graph_builder.compile()
