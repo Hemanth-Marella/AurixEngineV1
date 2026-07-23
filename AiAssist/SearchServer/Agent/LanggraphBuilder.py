@@ -4,7 +4,7 @@ from ..LanggraphTools import LanggraphState,RoutingFunction
 
 from ..Agent.LangGraphDecisionAgent import langgrahDecisionAgent
 
-from ..LanggraphNodes import ChapterNameNode,SubTopicExplanationNode,SubTopicNode,RouterNode,GenerationNode
+from ..LanggraphNodes import ChapterNameNode,SubTopicExplanationNode,SubTopicNode,RouterNode,GenerationNode,MemoryNode
 
 # THIS CREATES AN EMPTY GRAPH NO NODES IS INVOLVED START -> END
 # CREATE THE GRAPH . 
@@ -19,6 +19,7 @@ graph_builder.add_node("chapter_name",ChapterNameNode.chapter_name_node)
 graph_builder.add_node("sub_topics",SubTopicNode.sub_topic_node)
 graph_builder.add_node("explanations",SubTopicExplanationNode.sub_topic_explanation_node)
 graph_builder.add_node("answer",GenerationNode.generation_node)
+graph_builder.add_node("memory",MemoryNode.memory_node)
 
 
 # Flow  These are fixed graphs
@@ -30,7 +31,12 @@ graph_builder.add_node("answer",GenerationNode.generation_node)
 
 
 # BASED ON ROUTER, THESE ARE EDGES TO CONNECT START AND AGENTIC NODE
-graph_builder.add_edge(START, "agentic_node")
+# WITH MEMORY
+graph_builder.add_edge(START,"memory")
+graph_builder.add_edge("memory", "agentic_node")
+
+# WITHOUT MEMORY
+# graph_builder.add_edge(START, "agentic_node")
 
 # Agent -> Router, ONE MORE CONNECTION TO AGENTIC NODE TO ROUTER NODE . AFTER 
 graph_builder.add_edge("agentic_node", "router")

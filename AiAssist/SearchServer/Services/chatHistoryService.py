@@ -37,7 +37,6 @@ class ChatHistoryService:
             ai_message += f"Answer: {self.answer['answer']}"
 
         history =await self.mongodb.Chat_History.find_one({"file_hash" : self.file_hash})
-        print("hsitory is ",history)
 
         message = {
             "user": self.query,

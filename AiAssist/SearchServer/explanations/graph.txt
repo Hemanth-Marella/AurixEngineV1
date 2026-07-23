@@ -1,0 +1,61 @@
+when we create a graph.ainvoke 
+    - it define Nodes , Edges(how nodes connect) , state(shared data)
+
+    - after "graph = builder.compile()" this we get the graph is complete but it is not running
+    -to start executing the flow we call graph.ainvoke()
+
+    - ainvoke is a start button and initial_state is input given to the machine
+    - initial_state is our graph state and initial state contains the all the information that the graph needs to start
+
+Why do we pass it into graph.ainvoke()
+    - nodes need the file_hash , query , execution_plan so for these where the values come from .
+    - the values is come from graph.ainvoke(initial_state)
+
+    - internally when we call graph.ainvoke(initial_state)
+
+        Receive initial_state
+
+                ↓
+
+        Create shared state
+
+                ↓
+
+        Execute first node
+
+                ↓
+
+        Update state
+
+                ↓
+
+        Execute second node
+
+                ↓
+
+        Update state
+
+                ↓
+
+        Execute third node
+
+                ↓
+
+        Return final state
+
+Does Every node recieves the state 
+    - yes first agent node recieves the state .
+    - Langgraph automatically does something like agent_node(initial_state)
+
+
+How langgraph graph will work :
+    - graph.ainvoke(initial_state) : langgraph recieves the initial_state
+    - go to start
+    - run agentic node(state)
+    - run router(state)
+    - call routingFunction.route(state)
+    - depend on the returned values
+    - run chapter_name or subtopics or explanations 
+    - repeat until route() returns ENd
+    - return final state
+    - You never call these nodes yourself. graph.ainvoke(initial_state) acts like the orchestrator that starts the workflow and passes the shared state to each node automatically.
