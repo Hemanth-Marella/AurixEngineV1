@@ -138,6 +138,8 @@ from fastapi import APIRouter
 from pydantic import BaseModel
 from ..SearchServer.Agent.LanggraphBuilder import graph
 from ..SearchServer.Services.chatHistoryService import ChatHistoryService
+import time
+
 
 
 router = APIRouter(
@@ -172,7 +174,14 @@ async def user_question(request:QuestionRequest):
     # Updating the state with each node's returned values.
     # Sharing the updated state with subsequent nodes.
     # Returning the final state after execution.
+
+    start_time = time.perf_counter()
     result = await graph.ainvoke(initial_state)  # here we are providing actual data to nodes and edges to perform 
+
+    end_time = time.perf_counter()
+
+    execution_time = end_time - start_time
+    print("execution time is :",execution_time)
 
     service = ChatHistoryService(request.file_hash,request.query,result)
 
