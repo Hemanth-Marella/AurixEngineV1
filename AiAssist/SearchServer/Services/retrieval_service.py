@@ -3,6 +3,7 @@ from ..VectorDB.BiologyCollection import Biology  # for modular coding
 # from VectorDB.BiologyCollection import Biology # for individual implementation
 
 from qdrant_client import models
+from qdrant_client.models import PayloadSchemaType
 import time
 
 class RetrieveService:
@@ -51,6 +52,12 @@ class RetrieveService:
         return self.response
     
     async def summary_extraction_chunks(self,chapter_name:str):
+
+        self.q_client.create_payload_index(
+            collection_name="Biology",
+            field_name="chapter_name",
+            field_schema=PayloadSchemaType.KEYWORD
+        )
 
         result,_ = self.q_client.scroll(
             collection_name=self.collection_name,

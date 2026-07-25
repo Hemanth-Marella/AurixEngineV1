@@ -1,8 +1,6 @@
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 # from .LoadPdf import PdfToDocument   # if run this file uncomment the import
 
-file_path = "D:\projects\personalProject\Education\EducationChatbotServer\data\9thclass\Biology\9_biology1.pdf"
-
 def embedding_chunking(documents,chunk_size,chunk_overlap):
 
     documents_chunking = RecursiveCharacterTextSplitter(
