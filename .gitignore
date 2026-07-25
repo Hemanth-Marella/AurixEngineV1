@@ -1,5 +1,12 @@
+# Virtual environment
 .AurixEngineV1/
+
+# Environment variables
 .env
+
+# Data folder
 data/
+
+# Python cache
 __pycache__/
 *.pyc
