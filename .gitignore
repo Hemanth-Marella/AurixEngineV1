@@ -1,3 +1,5 @@
 .AurixEngineV1/
 .env
 data/
+__pycache__/
+*.pyc
