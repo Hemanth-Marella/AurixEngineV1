@@ -66,9 +66,13 @@ async def langgrahDecisionAgent(state: LanggraphState):
         Output:
         ["answer"]
 
+        User: Provide a Quize.
+        output:
+        ["chapter_name","summary","quiz"]
+
         User:
         {state["query"]}
-        """
+    """
 
     response = await llm.ainvoke(
         [HumanMessage(content=prompt)]

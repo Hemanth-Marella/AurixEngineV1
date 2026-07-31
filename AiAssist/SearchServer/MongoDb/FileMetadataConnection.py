@@ -43,6 +43,7 @@ class MongoDB:
         self.db = self.client["AurixDataBase"]
         self.Aurix_collection = self.db["DocumentMetadata"]  # DocumentMetadata collecion variable name is Aurix_COllection
         self.Chat_History = self.db["chat_history"]
+        self.question_generator = self.db["Question_Generator"]
 
         
 

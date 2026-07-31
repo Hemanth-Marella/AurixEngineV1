@@ -38,6 +38,8 @@ class SummaryService:
         # Hierachial summarization i am using hereb 
         # here i am using rolling algorithm
 
+        print("chapter name is inside summary service ",self.chapter_name)
+
         self.document = await self.mongodb.Aurix_collection.find_one(
             {"chapter_name": self.chapter_name}
         )

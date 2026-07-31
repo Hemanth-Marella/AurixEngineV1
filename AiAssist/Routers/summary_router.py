@@ -1,5 +1,6 @@
 from fastapi import APIRouter
 from ..SearchServer.Services.summary_service import SummaryService
+from ..SearchServer.LanggraphTools.LanggraphState import LanggraphState
 
 from pydantic import BaseModel
 

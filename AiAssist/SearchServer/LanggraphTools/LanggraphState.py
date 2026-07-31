@@ -6,18 +6,6 @@ from typing import TypedDict
 # "The state should have these keys and these data types."
 
 
-# LANGGRAPH STATE WITHOUT MEMORY
-# class LanggraphState(TypedDict):
-#     file_hash: str
-#     query: str
-#     chapter_name: str
-#     sub_topics: list[str]
-#     explanations: dict[str, str]
-#     answer:str
-#     execution_plan: list[str]
-
-
-
 
 #  LANGGRAPH STATE WITH MEMORY
 class LanggraphState(TypedDict):
@@ -29,3 +17,8 @@ class LanggraphState(TypedDict):
     answer:str
     execution_plan: list[str]
     memory : list[str]
+    quiz : str
+    summary: str
+    num_of_questions: int
+    quiz_type: str
+    difficulty: str

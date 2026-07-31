@@ -4,3 +4,4 @@ from .SubTopicExplanationNode import sub_topic_explanation_tool
 from .PlannerNode import planner_node
 from .GenerationNode import generation_node
 from .MemoryNode import memory_node
+from .QuizNode import quiz_node

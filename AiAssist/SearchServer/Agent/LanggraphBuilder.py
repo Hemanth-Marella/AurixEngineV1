@@ -4,7 +4,9 @@ from ..LanggraphTools import LanggraphState,PlannerRouter
 
 from ..Agent.LangGraphDecisionAgent import langgrahDecisionAgent
 
-from ..LanggraphNodes import ChapterNameNode,SubTopicExplanationNode,SubTopicNode,PlannerNode,GenerationNode,MemoryNode
+from ..LanggraphNodes import ChapterNameNode,SubTopicExplanationNode,SubTopicNode,PlannerNode,GenerationNode,MemoryNode,QuizNode,SummaryNode
+
+# from ..Agent.quiz_agent import quiz_agent_node
 
 # THIS CREATES AN EMPTY GRAPH NO NODES IS INVOLVED START -> END
 # CREATE THE GRAPH . 
@@ -20,6 +22,11 @@ graph_builder.add_node("sub_topics",SubTopicNode.sub_topic_node)
 graph_builder.add_node("explanations",SubTopicExplanationNode.sub_topic_explanation_node)
 graph_builder.add_node("answer",GenerationNode.generation_node)
 graph_builder.add_node("memory",MemoryNode.memory_node)
+graph_builder.add_node("summary",SummaryNode.summary_node)
+
+
+graph_builder.add_node("quiz",QuizNode.quiz_node)
+
 
 
 # BASED ON ROUTER, THESE ARE EDGES TO CONNECT START AND AGENTIC NODE
@@ -62,6 +69,8 @@ graph_builder.add_conditional_edges(
         "sub_topics": "sub_topics",
         "explanations": "explanations",
         "answer":"answer",
+        "summary":"summary",
+        "quiz":"quiz",
         END: END,  # IF ROUTE RETURNS END STOP GRAPH
     },
 )
@@ -73,6 +82,8 @@ graph_builder.add_edge("chapter_name", "Planner")
 graph_builder.add_edge("sub_topics", "Planner")
 graph_builder.add_edge("explanations", "Planner")
 graph_builder.add_edge("answer","Planner")
+graph_builder.add_edge("summary","Planner")
+graph_builder.add_edge("quiz","Planner")
 
 
 # CREATE THE EXECUTABLE GRAPH
