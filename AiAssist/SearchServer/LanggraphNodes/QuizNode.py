@@ -4,31 +4,38 @@ from ..LanggraphTools import LanggraphState
 
 def quiz_node(state: LanggraphState):
 
-    quiz_state: QuizState = {
-        "query" : state['query'],
-        "chapter_name": state["chapter_name"],
-        "summary": state["summary"],
+    try:
 
-        "num_of_questions": state["num_of_questions"],
-        "quiz_type": state["quiz_type"],
-        "difficulty": state["difficulty"],
+        quiz_state: QuizState = {
+            "query" : state['query'],
+            "chapter_name": state["chapter_name"],
+            "summary": state["summary"],
 
-        "current_question": 0,
-        "score": 0,
+            "num_of_questions": state["num_of_questions"],
+            "quiz_type": state["quiz_type"],
+            "difficulty": state["difficulty"],
 
-        "user_answer": "",
-        "correct_answer": "",
+            "current_question": 0,
+            "score": 0,
 
-        "generate_questions": [],
-        "quiz_completed": False,
+            "user_answer": "",
+            "correct_answer": "",
 
-        "execution_plan": [],
-    }
+            "generate_questions": [],
+            "quiz_completed": False,
 
-    result = quiz_graph.invoke(quiz_state)
+            "execution_plan": [],
+        }
 
-    print("quiz_graps : ",result)
+        result = quiz_graph.invoke(quiz_state)
 
-    state['execution_plan'].pop(0)
+        print("quiz_graps : ",result)
 
-    return state
+        state['execution_plan'].pop(0)
+
+        return state
+    except Exception as e:
+        return{
+            "error":str(e),
+            "failed_node":"quiz_node"
+        }

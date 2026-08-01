@@ -5,12 +5,19 @@ from ..LanggraphTools import LanggraphState,memory_tool
 # langgraph state does not store any values it is only definition
 async def memory_node(state:LanggraphState):
 
-    result = await memory_tool.ainvoke(
-        {'file_hash':state['file_hash']}
-    )
+    try:
 
-    # state['execution_plan'].pop()
+        result = await memory_tool.ainvoke(
+            {'file_hash':state['file_hash']}
+        )
 
-    return {
-        "memory":result
-    }
+        # state['execution_plan'].pop()
+
+        return {
+            "memory":result
+        }
+    except Exception as e:
+        return{
+            "error":str(e),
+            "failed_node":"memory_node"
+        }

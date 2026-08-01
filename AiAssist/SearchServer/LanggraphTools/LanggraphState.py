@@ -1,4 +1,4 @@
-from typing import TypedDict
+from typing import TypedDict,Optional
 
 # this is not create or update any values . It just tells to langgraph  this graph state will contain these keys
 # this is only define what fields are expected 
@@ -22,3 +22,5 @@ class LanggraphState(TypedDict):
     num_of_questions: int
     quiz_type: str
     difficulty: str
+    error: Optional[str]
+    failed_node: Optional[str]
