@@ -1,5 +1,7 @@
 from typing import TypedDict, List
 
+print("enter into quiz satte")
+
 class QuizState(TypedDict):
     query : str
     chapter_name: str # chapter title

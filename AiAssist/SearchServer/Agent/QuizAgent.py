@@ -2,6 +2,7 @@ from ..Services import summary_service
 from langchain_google_genai import ChatGoogleGenerativeAI
 from ..QuizTools import quiz_state,generate_questions_tool
 from ..QuizNodes import generate_question_node
+from langchain.messages import HumanMessage
 import os
 from dotenv import load_dotenv
 load_dotenv()
@@ -12,7 +13,9 @@ llm = ChatGoogleGenerativeAI(
     temperature=0.1,
 )
 
-def quiz_agent_node(state:quiz_state.QuizState):
+async def quiz_agent_node(state:quiz_state.QuizState):
+
+    print("entr into quiz agent")
 
     try:
         prompt = f"""
@@ -62,6 +65,18 @@ def quiz_agent_node(state:quiz_state.QuizState):
                 {state['query']}
 
         """
+
+        response = await llm.ainvoke(
+            [HumanMessage(content=prompt)]
+        )
+    
+        execution_plan = eval(response.content)
+    
+        print("execution plan :" , execution_plan)
+    
+        return {
+            "execution_plan": execution_plan
+        }
 
     except Exception as e:
         raise ValueError("quiz generation error is ",e)

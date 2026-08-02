@@ -23,8 +23,6 @@ graph_builder.add_node("explanations",SubTopicExplanationNode.sub_topic_explanat
 graph_builder.add_node("answer",GenerationNode.generation_node)
 graph_builder.add_node("memory",MemoryNode.memory_node)
 graph_builder.add_node("summary",SummaryNode.summary_node)
-
-
 graph_builder.add_node("quiz",QuizNode.quiz_node)
 
 
