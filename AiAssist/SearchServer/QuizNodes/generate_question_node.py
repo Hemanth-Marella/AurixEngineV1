@@ -5,9 +5,8 @@ async def generate_questions_node(state:QuizState):
 
     result = await generate_questions_tool.ainvoke(
         {
-            "no_of_questions":state['num_of_questions'],
-            "difficulty_type":state['difficulty'],
-            "chapter_name":state['chapter_name']
+            "summary": state["summary"],
+            "chapter_name": state["chapter_name"],
         }
     )
 

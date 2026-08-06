@@ -1,4 +1,4 @@
-from typing import TypedDict, List
+from typing_extensions import TypedDict, List,Any
 
 print("enter into quiz satte")
 
@@ -17,7 +17,7 @@ class QuizState(TypedDict):
     user_answer: str
     correct_answer: str # Correct answer for validation
 
-    generate_questions: List[str]
+    generate_questions: Any
 
     quiz_completed: bool # Whether the quiz has finished
 
