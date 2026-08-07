@@ -38,8 +38,6 @@ async def quiz_tool(state) :
 
     result =await quiz_graph.ainvoke(quiz_state)
 
-    print("quiz_graps : ",result)
-
     state['execution_plan'].pop(0)
 
     return state

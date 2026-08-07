@@ -8,7 +8,7 @@ load_dotenv()
 from langchain.tools import tool
 
 @tool
-async def generate_questions_tool(summary,chapter_name):
+async def generate_questions_tool(summary:str,chapter_name:str):
 
     """
         Generate quiz questions from the provided chapter summary.
@@ -19,6 +19,8 @@ async def generate_questions_tool(summary,chapter_name):
         google_api_key=os.getenv("AURIX_GEMINI_KEY"),
         temperature=0.1,
     )
+
+    print("enter into questions generate tool")
 
     question_prompt = f"""
 
@@ -67,10 +69,14 @@ async def generate_questions_tool(summary,chapter_name):
         "difficulty": "Easy",
         "total_questions": 5,
         "questions": [
-            {
-            "question_no": 1,
-            "question": "..."
-            }
+            "chapter_name": "{chapter_name}",
+            "difficulty": "Easy",
+            "total_questions": 5,
+            "questions": [
+                
+                "question_no": 1,
+                "question": "..."
+            ]  
         ]
 
         Do not return markdown.
@@ -80,8 +86,6 @@ async def generate_questions_tool(summary,chapter_name):
     """
 
     response =await llm.ainvoke(question_prompt)
-
-    print("response is ",response.content)
 
     return response.content
 

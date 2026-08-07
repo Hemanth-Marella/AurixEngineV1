@@ -1,3 +1,3 @@
 from .quiz_state import QuizState
-from .question_generate_tool import generate_questions_tool
+from .QuestionGenerateTool import generate_questions_tool
 from .quiz_planner_router import QuizPlannerRouter

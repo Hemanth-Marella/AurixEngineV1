@@ -76,8 +76,6 @@ async def langgrahDecisionAgent(state: LanggraphState):
         [HumanMessage(content=prompt)]
     )
 
-    print("response is ",response.content)
-
     execution_plan = eval(response.content)
 
     print("execution plan :" , execution_plan)

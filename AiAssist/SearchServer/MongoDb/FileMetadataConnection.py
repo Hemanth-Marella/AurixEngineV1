@@ -44,6 +44,7 @@ class MongoDB:
         self.Aurix_collection = self.db["DocumentMetadata"]  # DocumentMetadata collecion variable name is Aurix_COllection
         self.Chat_History = self.db["chat_history"]
         self.question_generator = self.db["Question_Generator"]
+        self.summary_storage = self.db["summary"]
 
         
 
@@ -55,8 +56,15 @@ class MongoDB:
 # async def check_db():
 #     client = AsyncIOMotorClient("mongodb://localhost:27017")
 
-#     dbs = await client.list_database_names()
-#     print(dbs)
+#     # dbs = await client["AurixDataBase"]
+    
+#     db = client["AurixDataBase"]
+
+#     collections = await db.list_collection_names()
+
+#     print("Collections:")
+#     for collection in collections:
+#         print(collection)
 
 # if __name__ == "__main__":
 #     asyncio.run(check_db())

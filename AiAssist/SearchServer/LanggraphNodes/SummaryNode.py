@@ -5,7 +5,8 @@ async def summary_node(state:LanggraphState):
     try:
         result = await summary_tool.ainvoke(
             {
-                "chapter_name":state['chapter_name']
+                "chapter_name":state['chapter_name'],
+                "file_hash":state['file_hash']
             }
         )
         state["execution_plan"].pop(0)

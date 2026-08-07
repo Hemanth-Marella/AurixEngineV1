@@ -4,7 +4,7 @@ from ..Services import summary_service
 
 
 @tool 
-async def summary_tool(chapter_name:str) -> str:
+async def summary_tool(chapter_name:str,file_hash:str) -> str:
 
     """
     Use this tool ONLY when the user explicitly asks for:
@@ -23,6 +23,6 @@ async def summary_tool(chapter_name:str) -> str:
     
     """
 
-    service = summary_service.SummaryService(chapter_name)
+    service = summary_service.SummaryService(chapter_name,file_hash)
     result = await service.summary_answer()
     return result
