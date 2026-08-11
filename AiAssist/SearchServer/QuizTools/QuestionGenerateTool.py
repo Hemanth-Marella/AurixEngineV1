@@ -3,12 +3,13 @@ from ..Services.summary_service import SummaryService
 from dotenv import load_dotenv
 from langchain_google_genai import ChatGoogleGenerativeAI
 from .quiz_state import QuizState
+from ..MongoDb import MongoDB
 import os
 load_dotenv()
 from langchain.tools import tool
 
 @tool
-async def generate_questions_tool(summary:str,chapter_name:str):
+async def generate_questions_tool(summary:str,chapter_name:str,file_hash:str):
 
     """
         Generate quiz questions from the provided chapter summary.
@@ -19,6 +20,7 @@ async def generate_questions_tool(summary:str,chapter_name:str):
         google_api_key=os.getenv("AURIX_GEMINI_KEY"),
         temperature=0.1,
     )
+    mongo_db = MongoDB()
 
     print("enter into questions generate tool")
 
@@ -69,14 +71,8 @@ async def generate_questions_tool(summary:str,chapter_name:str):
         "difficulty": "Easy",
         "total_questions": 5,
         "questions": [
-            "chapter_name": "{chapter_name}",
-            "difficulty": "Easy",
-            "total_questions": 5,
-            "questions": [
-                
-                "question_no": 1,
-                "question": "..."
-            ]  
+            "question_no": 1,
+            "question": "..."
         ]
 
         Do not return markdown.
@@ -86,6 +82,19 @@ async def generate_questions_tool(summary:str,chapter_name:str):
     """
 
     response =await llm.ainvoke(question_prompt)
+
+    await mongo_db.question_generator.update_one(
+
+        {"file_hash":file_hash,
+         "chapter_name":chapter_name,},
+
+        {
+            "$set": {
+                "questions":response.content
+            }
+        },
+        upsert=True
+    )
 
     return response.content
 

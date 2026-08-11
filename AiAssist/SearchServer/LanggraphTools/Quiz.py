@@ -14,6 +14,7 @@ async def quiz_tool(state) :
     print("hitting the quiz node")
 
     quiz_state: QuizState = {
+        "file_hash" : state['file_hash'],
         "query" : state['query'],
         "chapter_name": state["chapter_name"],
         "summary": state.get("summary", ""),
@@ -37,7 +38,5 @@ async def quiz_tool(state) :
     print("befor graph invokes")
 
     result =await quiz_graph.ainvoke(quiz_state)
-
-    state['execution_plan'].pop(0)
 
     return state

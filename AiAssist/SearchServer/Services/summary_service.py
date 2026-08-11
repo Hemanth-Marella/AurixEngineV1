@@ -48,7 +48,6 @@ class SummaryService:
         if check_file_hash:
 
             self.summary = check_file_hash['summary']
-            print("summary is",self.summary)
             return self.summary
 
         else:
