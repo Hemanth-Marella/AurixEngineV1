@@ -1,2 +1,2 @@
-from .generate_question_node import generate_questions_node
+from .GenerateQuestionNode import generate_questions_node
 from .quiz_planner_node import QuizPlannerNode

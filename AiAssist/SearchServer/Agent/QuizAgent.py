@@ -1,7 +1,7 @@
 from ..Services import summary_service
 from langchain_google_genai import ChatGoogleGenerativeAI
 from ..QuizTools import quiz_state,generate_questions_tool
-from ..QuizNodes import generate_question_node
+from ..QuizNodes import GenerateQuestionNode
 from langchain.messages import HumanMessage
 import os
 from dotenv import load_dotenv
