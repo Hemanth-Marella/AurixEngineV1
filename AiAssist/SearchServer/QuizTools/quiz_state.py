@@ -1,7 +1,5 @@
 from typing_extensions import TypedDict, List,Any
 
-print("enter into quiz satte")
-
 class QuizState(TypedDict):
     file_hash : str
     query : str

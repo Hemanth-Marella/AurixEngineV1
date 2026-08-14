@@ -12,7 +12,6 @@ async def sub_topic_explanation_node(state:LanggraphState):
             }
         )
         state['execution_plan'].pop(0)
-        print(state)
         return {
             'explanations':result,
             'error':None

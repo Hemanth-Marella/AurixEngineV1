@@ -24,15 +24,15 @@ async def generate_questions_tool(summary:str,chapter_name:str,file_hash:str):
     )
     
 
-    print("enter into questions generate tool")
+    
 
     generate_question =await mongo_db.question_generator.find_one({"file_hash":file_hash})
 
     if generate_question:
-        print("questions in mongodb")
+       
         questions = generate_question["questions"]
 
-        print(questions)
+        
 
         return questions
 

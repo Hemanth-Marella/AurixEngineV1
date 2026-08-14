@@ -74,7 +74,6 @@ class PdfProcessingService:
             }
         else:
             self.chapter_name = document["chapter_name"]
-            print("chapter name is : ",self.chapter_name)
             return{
                 "status" : "duplicate",
                 "file_hash" : hash_value,

@@ -22,7 +22,7 @@ class Biology:
             self.collection_names = [collection.name for collection in self.collections] # store all collection names to check
 
             if self.collection_name not in self.collection_names:
-                print("collection is not there")
+                
                 self.collection = self.getClient.create_collection(
                     collection_name=self.collection_name,
                     vectors_config={
@@ -40,7 +40,7 @@ class Biology:
                 print(f"existing collections :,{self.getClient.get_collections()}")
             return self.collection_name
         except Exception as e:
-            print("error is : ",e)
+            return e
             
 
 # obj1 = Biology()

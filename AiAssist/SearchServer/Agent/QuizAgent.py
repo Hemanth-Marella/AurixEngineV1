@@ -15,8 +15,6 @@ llm = ChatGoogleGenerativeAI(
 
 async def quiz_agent_node(state:quiz_state.QuizState):
 
-    print("entr into quiz agent")
-
     try:
         prompt = f"""
 
@@ -71,8 +69,6 @@ async def quiz_agent_node(state:quiz_state.QuizState):
         )
     
         execution_plan = eval(response.content)
-    
-        print("execution plan :" , execution_plan)
     
         return {
             "execution_plan": execution_plan

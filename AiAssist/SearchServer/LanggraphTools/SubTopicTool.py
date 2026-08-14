@@ -11,7 +11,6 @@ async def sub_topic_tool(file_hash:str)  -> list[str]:
 
     """
 
-    print("sub topics tool")
     mongodb = MongoDB()
     document = await mongodb.Aurix_collection.find_one(
         {

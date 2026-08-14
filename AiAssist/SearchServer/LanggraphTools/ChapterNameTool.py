@@ -21,7 +21,6 @@ async def chapter_name_tool(file_hash: str,query:str) -> str:
 
     end_time = time.perf_counter()
     execution_time = end_time - start_time
-    print("chapter_name execution is :",execution_time)
 
     if document:
 

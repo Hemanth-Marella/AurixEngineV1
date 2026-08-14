@@ -26,10 +26,8 @@ async def sub_topic_explanation_tool(file_hash: str,sub_topics:list[str],query:s
     - Returns the explanation for each subtopic.
     """
 
-    print("sub topic explanation")
-
     sub_topics_list = [topics for topics in sub_topics]
-    print("print sub topics list ",sub_topics_list)
+    
 
     explanations = {}
 

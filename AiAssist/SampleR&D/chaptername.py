@@ -13,25 +13,23 @@ class ChapterName:
             path = Path(self.file)
 
             if not path.exists():
-                print("File does not exist")
+                
                 return
 
             if path.suffix.lower() != ".pdf":
-                print("File is not a PDF")
+                
                 return
-
-            print("Valid PDF file")
 
             loader = pymupdf.open(path)
 
             # Continue processing...
 
         except Exception as e:
-            print("Error:", e)
+            return e
 
 
-file_path = "D:\projects\personalProject\Education\EducationChatbotServer\data\9thclass\Biology\9_biology1.pdf"
-chapter = ChapterName(file_path)
+# file_path = "D:\projects\personalProject\Education\EducationChatbotServer\data\9thclass\Biology\9_biology1.pdf"
+# chapter = ChapterName(file_path)
 
 # loader = pymupdf.open(file_path)
 

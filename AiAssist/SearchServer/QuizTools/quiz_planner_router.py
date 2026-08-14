@@ -4,8 +4,6 @@ def QuizPlannerRouter(state:QuizState):
 
     plan = state['execution_plan']
 
-    print("quiz plan is :",plan)
-
     if not plan:
         return END
 

@@ -9,10 +9,6 @@ async def quiz_tool(state) :
     use this tool whenever user talking about the quiz . provide a quiz question like this ok
     """
 
-    print("quiz node execution plan is ",state['execution_plan'])
-
-    print("hitting the quiz node")
-
     quiz_state: QuizState = {
         "file_hash" : state['file_hash'],
         "query" : state['query'],
@@ -35,7 +31,6 @@ async def quiz_tool(state) :
         "execution_plan": [],
     }
 
-    print("befor graph invokes")
 
     result =await quiz_graph.ainvoke(quiz_state)
 

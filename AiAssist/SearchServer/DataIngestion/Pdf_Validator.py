@@ -11,9 +11,6 @@ class pdfValidator:
 
     def _validate(self):
 
-        print(type(self.filename))
-        # print(self.filename)
-
         # validate file name
         if not self.filename:
             raise ValueError("Filename is Missing...")

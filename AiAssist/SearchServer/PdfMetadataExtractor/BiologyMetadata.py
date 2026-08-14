@@ -55,13 +55,14 @@ class BiologyDocumentMetadata:
             return self.chapter_no
 
         else:
-            print("details is not there")
+            
+            return "details is not there"
 
     
     def get_chapter_name(self):
         if len(self.chaptername_details) != 0:
             self.chapterName = "".join(self.chaptername_details)
-            print(self.chapterName)
+            
             return self.chapterName
 
     def get_subTopics(self):

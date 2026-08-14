@@ -32,9 +32,6 @@ class MongoDB:
         db_host = os.getenv("MONGODBHOST")
         db_port = os.getenv("MONGODBPORT")
 
-        print("HOST =", os.getenv("MONGODBHOST"))
-        print("PORT =", os.getenv("MONGODBPORT"))
-
         if not db_host or not db_port:
             raise ValueError("Missing MongoDB environment variables")
 

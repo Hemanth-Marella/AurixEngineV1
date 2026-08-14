@@ -14,7 +14,6 @@ async def memory_tool(file_hash: str) -> list | str:
     )
 
     if document:
-        print(document["messages"])
         return document["messages"]
 
     return "MongoDB does not have chat history for this PDF."

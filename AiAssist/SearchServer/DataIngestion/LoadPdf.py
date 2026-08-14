@@ -26,13 +26,13 @@ class PdfToDocument:
         try:
             self.loader = pymupdf.open(stream=self.pdf_bytes,filetype="pdf")
             self.page_count = self.loader.page_count
-            # print(self.page_count)
+           
             for page in self.loader:
                 self.raw_documents.append(page)
 
             return self.raw_documents , self.page_count
         except Exception as e:
-            print("error is ", e)
+            return e
     
     def load_pdf_to_documents(self,chapter_name):
 
@@ -55,7 +55,8 @@ class PdfToDocument:
             return self.embedding_documents
 
         except Exception as e:
-            print("error is ", e)
+            return e
+            
         
         
 # pdf = PdfToDocument(file_path=file_path)

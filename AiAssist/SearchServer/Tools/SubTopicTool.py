@@ -17,7 +17,6 @@ async def sub_topic_tool(file_hash:str) -> str:
     )
 
     if document:
-        print(document['sub_topics'])
         return document['sub_topics']
     
     return "sub topics not there in this pdf"

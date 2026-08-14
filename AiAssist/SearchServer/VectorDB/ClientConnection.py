@@ -21,7 +21,7 @@ class ClientConnect:
                     return self.qdrant_connection # returning boolean value
 
         except Exception as e:
-            print("error is ",e)
+            return e
 
 
 # test = ClientConnect()

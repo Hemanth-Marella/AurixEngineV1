@@ -32,11 +32,9 @@ class AddingVectorsToDb:
         try:
             if self.documents is None:
                 self.documents = self.process_pdf.load_pdf_to_documents(chapter_name) # return list of documents
-                if self.documents:
-                    print("documents created") 
                 return self.documents
         except Exception as e:
-            print(f"documents creation error : {e}")
+            return e
 
     def generate_chunks(self,chapter_name):
         try:
@@ -49,11 +47,11 @@ class AddingVectorsToDb:
                 chunk_overlap=80
             )
 
-            print("chunks created")
+          
 
             return self.chunks
         except Exception as e:
-            print(f"chunks error is : {e}")
+            return e
 
     def add_vectors_to_cloud(self,chapter_name):
 
@@ -61,7 +59,7 @@ class AddingVectorsToDb:
             if self.chunks is None:
                 self.generate_chunks(chapter_name)
             collection_name = self.biology_collection.createCollection()
-            print("collection name is :",collection_name)
+            
             vectors = []
             for chunk in self.chunks:
             # for chunk_index, chunk in enumerate(self.chunks):
@@ -96,6 +94,6 @@ class AddingVectorsToDb:
                 )
 
         except Exception as e:
-            print("error is : ", e)
+            return e
 
     

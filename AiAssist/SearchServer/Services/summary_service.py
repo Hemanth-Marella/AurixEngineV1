@@ -38,8 +38,6 @@ class SummaryService:
         # Hierachial summarization i am using hereb 
         # here i am using rolling algorithm
 
-        print("chapter name is inside summary service ",self.chapter_name)
-
         check_file_hash = await self.mongodb.summary_storage.find_one(
             {"file_hash":self.file_hash,
              "chapter_name": self.chapter_name}
@@ -113,7 +111,6 @@ class SummaryService:
                             break
 
                         except RateLimitError:
-                            print("Rate limit reached. Waiting 3 seconds...")
                             await asyncio.sleep(3)
 
                     # Small pause before the next window
