@@ -11,8 +11,6 @@ async def memory_node(state:LanggraphState):
             {'file_hash':state['file_hash']}
         )
 
-        # state['execution_plan'].pop()
-
         return {
             "memory":result
         }

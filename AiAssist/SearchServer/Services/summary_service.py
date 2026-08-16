@@ -50,6 +50,8 @@ class SummaryService:
 
         else:
 
+            print("enter into summary")
+
             self.document = await self.mongodb.Aurix_collection.find_one(
                 {"chapter_name": self.chapter_name,
                 "file_hash":self.file_hash}
