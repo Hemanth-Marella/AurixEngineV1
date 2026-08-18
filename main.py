@@ -5,6 +5,9 @@ from AiAssist.Routers.summary_router import router as summary_router
 from AiAssist.Routers.quiz_questions_router import router as quiz_router
 from AiAssist.api.middlewares import configure_middleware
 
+from dotenv import load_dotenv
+load_dotenv()
+
 app = FastAPI()
 
 # Register middleware

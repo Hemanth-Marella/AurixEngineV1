@@ -109,7 +109,7 @@ load_dotenv()
 # )
 
 llm = ChatGroq(
-    model="llama-3.1-8b-instant",
+    model="openai/gpt-oss-20b",
     api_key=os.getenv("AURIX_GROQ_API_KEY"),
     temperature=0,
 )
@@ -202,8 +202,6 @@ async def langgrahDecisionAgent(state: LanggraphState):
         execution_plan = [
             node for node in execution_plan if node in valid_nodes
         ]
-
-        print("Execution Plan:", execution_plan)
 
         return {
             "execution_plan": execution_plan

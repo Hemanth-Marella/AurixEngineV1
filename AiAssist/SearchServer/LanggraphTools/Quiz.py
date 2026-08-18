@@ -34,4 +34,4 @@ async def quiz_tool(state) :
 
     result =await quiz_graph.ainvoke(quiz_state)
 
-    return result[:-1]
+    return result

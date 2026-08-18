@@ -1,5 +1,6 @@
 from ..Services import summary_service
 from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_groq import ChatGroq
 from ..QuizTools import quiz_state,generate_questions_tool
 from ..QuizNodes import GenerateQuestionNode
 from langchain.messages import HumanMessage
@@ -7,10 +8,16 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-llm = ChatGoogleGenerativeAI(
-    model="gemini-2.5-flash",
-    google_api_key=os.getenv("AURIX_GEMINI_KEY"),
-    temperature=0.1,
+# llm = ChatGoogleGenerativeAI(
+#     model="gemini-2.5-flash",
+#     google_api_key=os.getenv("AURIX_GEMINI_KEY"),
+#     temperature=0.1,
+# )
+
+llm = ChatGroq(
+    model="openai/gpt-oss-20b",
+    api_key=os.getenv("AURIX_GROQ_API_KEY"),
+    temperature=0,
 )
 
 async def quiz_agent_node(state:quiz_state.QuizState):
