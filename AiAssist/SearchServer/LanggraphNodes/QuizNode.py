@@ -10,7 +10,6 @@ async def quiz_node(state: LanggraphState):
         return {
             "quiz_result":result
         }
-
     except Exception as e:
 
         return {
