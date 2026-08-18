@@ -24,3 +24,4 @@ class LanggraphState(TypedDict):
     difficulty: str
     error: Optional[str]
     failed_node: Optional[str]
+    quiz_result: str

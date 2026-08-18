@@ -22,18 +22,11 @@ async def generate_questions_tool(summary:str,chapter_name:str,file_hash:str):
         google_api_key=os.getenv("AURIX_GEMINI_KEY"),
         temperature=0.1,
     )
-    
-
-    
 
     generate_question =await mongo_db.question_generator.find_one({"file_hash":file_hash})
 
     if generate_question:
-       
         questions = generate_question["questions"]
-
-        
-
         return questions
 
     else:

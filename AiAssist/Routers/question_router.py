@@ -187,10 +187,11 @@ async def user_question(request:QuestionRequest):
 
     await service.chat_history()
 
-    assistant_message = result['memory'][-1]['assistant']
-    print("result is ",result['memory'])
+    # assistant_message = result['memory'][-1]['assistant']
 
-    if ':' in assistant_message:
-        assistant_message = assistant_message.split(':', 1)[1].strip()
+    # if ':' in assistant_message:
+    #     assistant_message = assistant_message.split(':', 1)[1].strip()
 
-    return assistant_message
+    # return assistant_message
+
+    return result

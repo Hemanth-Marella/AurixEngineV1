@@ -3,6 +3,8 @@ from ..QuizTools import generate_questions_tool,QuizState
 
 async def generate_questions_node(state:QuizState):
 
+    print("enter into quiz node")
+
     result = await generate_questions_tool.ainvoke(
         {
             "summary": state["summary"],

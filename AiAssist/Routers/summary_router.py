@@ -20,4 +20,3 @@ async def summary(request :SummaryRequest):
     return {
         'summary':result
     }
-

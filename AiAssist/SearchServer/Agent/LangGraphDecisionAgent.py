@@ -77,6 +77,7 @@ async def langgrahDecisionAgent(state: LanggraphState):
     )
 
     execution_plan = eval(response.content)
+    print("execution plan is ",execution_plan)
 
     return {
         "execution_plan": execution_plan
