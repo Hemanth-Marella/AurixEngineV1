@@ -25,3 +25,4 @@ class LanggraphState(TypedDict):
     error: Optional[str]
     failed_node: Optional[str]
     quiz_result: dict | None
+    main_answer : str

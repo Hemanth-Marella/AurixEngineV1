@@ -1,19 +1,17 @@
 from ..MongoDb import MongoDB
 from langchain_core.tools import tool
+from ..Services.chatHistoryService import ChatHistoryService
 
 @tool
-async def memory_tool(file_hash: str) -> list | str:
+async def memory_tool(file_hash: str,query:str,result) -> list | str:
     """
     Retrieves the chat history for a given PDF using its file hash.
     """
 
-    mongodb = MongoDB()
+    chat_history_service = ChatHistoryService(file_hash,query,result)
 
-    document = await mongodb.Chat_History.find_one(
-        {"file_hash": file_hash}
-    )
+    # update chat history
+    update_current_message = chat_history_service.chat_history()
+    if update_current_message:
 
-    if document:
-        return document["messages"]
-
-    return "MongoDB does not have chat history for this PDF."
+        return result

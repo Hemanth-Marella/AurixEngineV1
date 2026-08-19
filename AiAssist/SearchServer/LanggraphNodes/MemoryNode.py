@@ -8,11 +8,14 @@ async def memory_node(state:LanggraphState):
     try:
 
         result = await memory_tool.ainvoke(
-            {'file_hash':state['file_hash']}
+            {
+                "file_hash": state["file_hash"],
+                "query": state["query"],
+                "result":state["main_answer"]
+            }
         )
-
         return {
-            "memory":result
+            result
         }
     except Exception as e:
         return{

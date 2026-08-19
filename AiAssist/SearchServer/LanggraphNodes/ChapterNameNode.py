@@ -12,7 +12,8 @@ async def chapter_name_node(state:LanggraphState):
         )
         state['execution_plan'].pop(0) # remove the node after execution
         return {
-            "chapter_name": result  # we updating the chapter name here to the state 
+            "chapter_name": result,  # we updating the chapter name here to the state 
+            "main_answer":result
         }
 
     except Exception as e:

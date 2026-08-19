@@ -36,6 +36,11 @@ class ChatHistoryService:
         if self.answer.get("answer"):
             ai_message += f"Answer: {self.answer['answer']}"
 
+        if self.answer.get("quiz_result"):
+            quiz = self.answer["quiz_result"]
+
+            ai_message = quiz.get("generate_questions", "")
+
         history =await self.mongodb.Chat_History.find_one({"file_hash" : self.file_hash})
 
         message = {
@@ -60,3 +65,4 @@ class ChatHistoryService:
                 "file_hash": self.file_hash,
                 "messages": [message]
             })
+        return True

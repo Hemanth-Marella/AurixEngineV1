@@ -12,6 +12,7 @@ async def summary_node(state:LanggraphState):
         state["execution_plan"].pop(0)
         return {
             "summary":result,
+            "main_answer":result,
             "error":None
         }
 

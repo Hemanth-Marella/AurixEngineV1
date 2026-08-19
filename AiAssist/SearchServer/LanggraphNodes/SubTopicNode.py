@@ -12,6 +12,7 @@ async def sub_topic_node(state:LanggraphState):
         state["execution_plan"].pop(0)
         return {
             'sub_topics':result,
+            "main_answer":result,
             'error':None
         }
 

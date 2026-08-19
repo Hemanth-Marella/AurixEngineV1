@@ -154,6 +154,8 @@ class QuestionRequest(BaseModel):
 @router.post("/question")
 async def user_question(request:QuestionRequest):
 
+    assistant_message = ""
+
     initial_state = {
         "file_hash": request.file_hash,
         "query": request.query,
@@ -185,8 +187,32 @@ async def user_question(request:QuestionRequest):
 
     service = ChatHistoryService(request.file_hash,request.query,result)
 
-    await service.chat_history()
+    done = await service.chat_history()
 
-    print("result is ",len(result))
+    if not done:
+        return {
+            "message": "failed to save chat history"
+        }
 
-    return result
+    assistant_message = result.get("memory", [])
+
+    if assistant_message:
+
+        assistant_message = assistant_message[-1].get(
+            "assistant",
+            ""
+        )
+
+    else:
+
+        assistant_message = ""
+
+    if ":" in assistant_message:
+
+        assistant_message = assistant_message.split(
+            ":",
+            1
+        )[1].strip()
+
+    return assistant_message
+

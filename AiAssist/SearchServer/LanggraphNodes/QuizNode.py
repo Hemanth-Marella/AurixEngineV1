@@ -8,7 +8,8 @@ async def quiz_node(state: LanggraphState):
         result = await quiz_tool.ainvoke({'state':state})
         state['execution_plan'].pop(0) # remove the node after execution
         return {
-            "quiz_result":result
+            "quiz_result":result,
+            "main_answer":result
         }
     except Exception as e:
 

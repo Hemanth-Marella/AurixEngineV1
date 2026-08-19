@@ -13,7 +13,8 @@ async def generation_node(state:LanggraphState):
         )
         state['execution_plan'].pop(0) # remove the node after execution
         return {
-            "answer": result
+            "answer": result,
+            "main_answer":result
         }
 
     except Exception as e:

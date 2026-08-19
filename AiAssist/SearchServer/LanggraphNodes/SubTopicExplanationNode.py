@@ -14,6 +14,7 @@ async def sub_topic_explanation_node(state:LanggraphState):
         state['execution_plan'].pop(0)
         return {
             'explanations':result,
+            "main_answer":result,
             'error':None
         }
     except Exception as e:

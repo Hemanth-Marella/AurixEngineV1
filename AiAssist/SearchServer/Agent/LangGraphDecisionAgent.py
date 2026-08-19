@@ -139,7 +139,7 @@ async def langgrahDecisionAgent(state: LanggraphState):
                 - Answers any question about the PDF content.
 
                 5. quiz
-                - Generates quiz questions from the chapter summary.
+                - Generates quiz questions from the chapter and summary.Because questions is asking from the Summary only .
 
                 Rules:
 
@@ -175,6 +175,7 @@ async def langgrahDecisionAgent(state: LanggraphState):
                 ["answer"]
 
                 User: provide a quiz.
+                for quiz chapter name , summary and quiz are more important
                 Output:
                 ["chapter_name","summary","quiz"]
 
