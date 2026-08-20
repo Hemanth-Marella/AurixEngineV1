@@ -6,12 +6,12 @@ import os
 
 class ChatHistoryService:
 
-    def __init__(self,file_hash:str,query:str,answer:str):
+    def __init__(self,file_hash:str,query:str,state:dict):
 
         self.file_hash = file_hash
         self.query = query
         self.mongodb = MongoDB()
-        self.answer = answer
+        self.answer = state
 
         self.llm = ChatGroq(
             model="llama-3.1-8b-instant",
@@ -58,6 +58,8 @@ class ChatHistoryService:
                 {"file_hash": self.file_hash},
                 {"$set": {"messages": history["messages"]}}
             )
+
+            print("updated")
 
         else:
 

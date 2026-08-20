@@ -92,7 +92,7 @@
 
 from langchain_core.messages import HumanMessage
 from langchain_groq import ChatGroq
-# from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_google_genai import ChatGoogleGenerativeAI
 from dotenv import load_dotenv
 from ..LanggraphTools import LanggraphState
 
@@ -102,17 +102,17 @@ import json
 load_dotenv()
 
 # Uncomment if using Gemini
-# llm = ChatGoogleGenerativeAI(
-#     model="gemini-2.5-flash",
-#     google_api_key=os.getenv("AURIX_GEMINI_KEY"),
-#     temperature=0,
-# )
-
-llm = ChatGroq(
-    model="openai/gpt-oss-20b",
-    api_key=os.getenv("AURIX_GROQ_API_KEY"),
+llm = ChatGoogleGenerativeAI(
+    model="gemini-2.5-flash",
+    google_api_key=os.getenv("AURIX_GEMINI_KEY"),
     temperature=0,
 )
+
+# llm = ChatGroq(
+#     model="openai/gpt-oss-20b",
+#     api_key=os.getenv("AURIX_GROQ_API_KEY"),
+#     temperature=0,
+# )
 
 
 async def langgrahDecisionAgent(state: LanggraphState):
@@ -121,6 +121,8 @@ async def langgrahDecisionAgent(state: LanggraphState):
                 You are an educational assistant.
 
                 Your job is ONLY to decide which nodes should be executed.
+                For every request must and should use memory as last node not front or middle node ok 
+
                 DO NOT answer the user's question.
 
                 Available Nodes:
@@ -152,32 +154,32 @@ async def langgrahDecisionAgent(state: LanggraphState):
 
                 User: What is the chapter name?
                 Output:
-                ["chapter_name"]
+                ["chapter_name","memory"]
 
                 User: List all subtopics.
                 Output:
-                ["sub_topics"]
+                ["sub_topics","memory"]
 
                 User: Explain all subtopics.
                 Output:
-                ["sub_topics", "explanations"]
+                ["sub_topics", "explanations","memory"]
 
                 User: Explain osmosis.
                 Output:
-                ["answer"]
+                ["answer","memory"]
 
                 User: What is photosynthesis?
                 Output:
-                ["answer"]
+                ["answer","memory"]
 
                 User: Why are plant tissues different from animal tissues?
                 Output:
-                ["answer"]
+                ["answer","memory"]
 
                 User: provide a quiz.
                 for quiz chapter name , summary and quiz are more important
                 Output:
-                ["chapter_name","summary","quiz"]
+                ["chapter_name","summary","quiz","memory"]
 
                 User:
                 {state["query"]}
@@ -197,7 +199,9 @@ async def langgrahDecisionAgent(state: LanggraphState):
             "sub_topics",
             "explanations",
             "answer",
+            "summary",
             "quiz",
+            "memory",
         }
 
         execution_plan = [
@@ -210,7 +214,6 @@ async def langgrahDecisionAgent(state: LanggraphState):
 
     except json.JSONDecodeError as e:
         print("JSON Parsing Error:", e)
-        print("LLM Output:", response.content)
 
         return {
             "execution_plan": ["answer"]
@@ -222,3 +225,4 @@ async def langgrahDecisionAgent(state: LanggraphState):
         return {
             "execution_plan": ["answer"]
         }
+

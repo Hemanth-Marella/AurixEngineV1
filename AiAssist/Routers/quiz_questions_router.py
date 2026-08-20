@@ -20,8 +20,6 @@ async def quiz_questions(request: QuizResponse):
         {"file_hash": request.file_hash}
     )
 
-    print(document)
-
     if not document:
         return {
             "questions": []

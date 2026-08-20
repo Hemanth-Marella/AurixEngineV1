@@ -29,8 +29,8 @@ graph_builder.add_node("quiz",QuizNode.quiz_node)
 
 # BASED ON ROUTER, THESE ARE EDGES TO CONNECT START AND AGENTIC NODE
 # WITH MEMORY
-graph_builder.add_edge(START,"memory")
-graph_builder.add_edge("memory", "agentic_node")
+graph_builder.add_edge(START,"agentic_node")
+# graph_builder.add_edge("memory", "agentic_node")
 
 # WITHOUT MEMORY
 # graph_builder.add_edge(START, "agentic_node")
@@ -69,6 +69,7 @@ graph_builder.add_conditional_edges(
         "answer":"answer",
         "summary":"summary",
         "quiz":"quiz",
+        "memory":"memory",
         END: END,  # IF ROUTE RETURNS END STOP GRAPH
     },
 )
@@ -82,6 +83,7 @@ graph_builder.add_edge("explanations", "Planner")
 graph_builder.add_edge("answer","Planner")
 graph_builder.add_edge("summary","Planner")
 graph_builder.add_edge("quiz","Planner")
+graph_builder.add_edge("memory","Planner")
 
 
 # CREATE THE EXECUTABLE GRAPH

@@ -15,9 +15,9 @@ async def quiz_tool(state) :
         "chapter_name": state["chapter_name"],
         "summary": state.get("summary", ""),
 
-        "num_of_questions": 5, #state["num_of_questions"]
-        "quiz_type": "mcq" , #state["quiz_type"]
-        "difficulty": "Easy"   ,     #state["difficulty"],
+        "num_of_questions": state['num_of_questions'], #state["num_of_questions"]
+        "quiz_type": state['quiz_type'] , #state["quiz_type"]
+        "difficulty": state['difficulty'] ,     #state["difficulty"],
 
         "current_question": 0,
         "score": 0,

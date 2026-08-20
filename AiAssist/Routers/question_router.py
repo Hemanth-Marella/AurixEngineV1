@@ -159,10 +159,29 @@ async def user_question(request:QuestionRequest):
     initial_state = {
         "file_hash": request.file_hash,
         "query": request.query,
+
         "chapter_name": "",
         "sub_topics": [],
         "explanations": {},
-        "execution_plan": []
+
+        "answer": "",
+        "execution_plan": [],
+
+        "memory": [],
+
+        "quiz": "",
+        "summary": "",
+
+        "num_of_questions": 0,
+        "quiz_type": "",
+        "difficulty": "",
+
+        "error": None,
+        "failed_node": None,
+
+        "quiz_result": None,
+
+        "main_answer": ""
     }
 
     # the actual state values is come from graph.invoke . Here only update the state is happened when the node perform operation
@@ -185,34 +204,5 @@ async def user_question(request:QuestionRequest):
     execution_time = end_time - start_time
     print("execution time is :",execution_time)
 
-    service = ChatHistoryService(request.file_hash,request.query,result)
-
-    done = await service.chat_history()
-
-    if not done:
-        return {
-            "message": "failed to save chat history"
-        }
-
-    assistant_message = result.get("memory", [])
-
-    if assistant_message:
-
-        assistant_message = assistant_message[-1].get(
-            "assistant",
-            ""
-        )
-
-    else:
-
-        assistant_message = ""
-
-    if ":" in assistant_message:
-
-        assistant_message = assistant_message.split(
-            ":",
-            1
-        )[1].strip()
-
-    return assistant_message
+    return result.get("main_answer")   # instead of this get last message from mongodb is good because before return only it is updated ok 
 
