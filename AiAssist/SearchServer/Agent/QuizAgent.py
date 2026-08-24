@@ -52,7 +52,7 @@ async def quiz_agent_node(state:quiz_state.QuizState):
 
                 User: Start a quiz.
                 Output:
-                ["generate_questions"]
+                ["generate_questions","question"]
 
                 User: I answered the first question.
                 Output:
@@ -76,6 +76,8 @@ async def quiz_agent_node(state:quiz_state.QuizState):
         )
     
         execution_plan = eval(response.content)
+
+        print("quiz_execution plan is ,",execution_plan)
     
         return {
             "execution_plan": execution_plan

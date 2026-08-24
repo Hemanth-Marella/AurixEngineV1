@@ -1,4 +1,4 @@
-from ..QuizNodes import generate_questions_node,QuizPlannerNode
+from ..QuizNodes import generate_questions_node,QuizPlannerNode,ask_question_node
 from langgraph.graph import StateGraph, START, END
 from .QuizAgent import quiz_agent_node
 
@@ -9,6 +9,7 @@ quiz_graph_builder = StateGraph(QuizState)
 quiz_graph_builder.add_node("quiz_agent",quiz_agent_node)
 quiz_graph_builder.add_node("generate_questions",generate_questions_node)
 quiz_graph_builder.add_node("quiz_planner",QuizPlannerNode)
+quiz_graph_builder.add_node("question",ask_question_node)
 
 quiz_graph_builder.add_edge(START,"quiz_agent")
 quiz_graph_builder.add_edge("quiz_agent","quiz_planner")
@@ -18,10 +19,12 @@ quiz_graph_builder.add_conditional_edges(
     QuizPlannerRouter,
     {
         "generate_questions":"generate_questions",
+        "question":"question",
         END:END,
     }
 )
 
 quiz_graph_builder.add_edge("generate_questions","quiz_planner")
+quiz_graph_builder.add_edge("question","quiz_planner")
 
 quiz_graph = quiz_graph_builder.compile()

@@ -13,6 +13,8 @@ router = APIRouter(prefix="/summary",tags=["Summary"])
 @router.post("/summaryApi")
 async def summary(request :SummaryRequest):
 
+    print("summary is")
+
     service = SummaryService(request.chapter_name,request.file_hash)
 
     result = await service.summary_answer()

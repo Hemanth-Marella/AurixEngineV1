@@ -205,4 +205,3 @@ async def user_question(request:QuestionRequest):
     print("execution time is :",execution_time)
 
     return result.get("main_answer")   # instead of this get last message from mongodb is good because before return only it is updated ok 
-

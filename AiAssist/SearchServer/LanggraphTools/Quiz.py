@@ -19,6 +19,7 @@ async def quiz_tool(state) :
         "quiz_type": state['quiz_type'] , #state["quiz_type"]
         "difficulty": state['difficulty'] ,     #state["difficulty"],
 
+        "question":"",
         "current_question": 0,
         "score": 0,
 

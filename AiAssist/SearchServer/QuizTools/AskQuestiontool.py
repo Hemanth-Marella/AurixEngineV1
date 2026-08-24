@@ -1,5 +1,6 @@
 from langchain.tools import tool
 from ..MongoDb import MongoDB
+import json
 
 @tool
 async def ask_question_tool(file_hash: str, current_question: int = 0):
@@ -39,13 +40,19 @@ async def ask_question_tool(file_hash: str, current_question: int = 0):
     )
 
     if not question_check:
+        print("something")
         return {
             "question": None,
             "current_question": current_question,
             "error": "No questions found"
         }
+    questions_data = question_check["questions"]
 
-    questions = question_check["questions"]
+    questions_data = "{" + questions_data + "}"
+
+    questions_data = json.loads(questions_data)
+
+    questions = questions_data["questions"]
 
     # No more questions
     if current_question >= len(questions):
@@ -55,6 +62,4 @@ async def ask_question_tool(file_hash: str, current_question: int = 0):
             "error": "Quiz completed"
         }
 
-    return {
-        "question": questions[current_question]
-    }
+    return questions[current_question]

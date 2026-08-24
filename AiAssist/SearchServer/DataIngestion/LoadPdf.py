@@ -2,8 +2,6 @@ import pymupdf
 from .Pdf_Validator import pdfValidator
 from langchain_core.documents import Document
 
-file_path = "D:\projects\personalProject\Education\EducationChatbotServer\data\9thclass\Biology\9_biology1.pdf"
-
 class PdfToDocument:
 
     def __init__(self,pdf_bytes: bytes, filename: str):
