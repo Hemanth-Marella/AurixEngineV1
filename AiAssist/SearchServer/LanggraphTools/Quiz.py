@@ -25,6 +25,7 @@ async def quiz_tool(state) :
 
         "user_answer": "",
         "correct_answer": "",
+        "quiz_main_answer":"",
 
         "generate_questions": [],
         "quiz_completed": False,
@@ -32,7 +33,15 @@ async def quiz_tool(state) :
         "execution_plan": [],
     }
 
+    config = {
+        "configurable": {
+            "thread_id": "quiz_123"
+        }
+    }
 
-    result =await quiz_graph.ainvoke(quiz_state)
+    result =await quiz_graph.ainvoke(quiz_state,config=config)
 
-    return result
+    out_state = await quiz_graph.aget_state(config=config)
+    print("current state ",out_state)
+
+    return result['quiz_main_answer']

@@ -1,6 +1,7 @@
 from ..QuizNodes import generate_questions_node,QuizPlannerNode,ask_question_node
 from langgraph.graph import StateGraph, START, END
 from .QuizAgent import quiz_agent_node
+from ..Checkpointers.MongodbCheckpointer import create_checkpointer
 
 from ..QuizTools import QuizState,QuizPlannerRouter
 
@@ -27,4 +28,8 @@ quiz_graph_builder.add_conditional_edges(
 quiz_graph_builder.add_edge("generate_questions","quiz_planner")
 quiz_graph_builder.add_edge("question","quiz_planner")
 
-quiz_graph = quiz_graph_builder.compile()
+checkpointer = create_checkpointer()
+
+quiz_graph = quiz_graph_builder.compile(
+    checkpointer=checkpointer
+)

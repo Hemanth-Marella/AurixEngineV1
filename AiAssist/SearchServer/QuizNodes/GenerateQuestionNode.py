@@ -14,7 +14,7 @@ async def generate_questions_node(state:QuizState):
         }
     )
     state['execution_plan'].pop(0) # remove the node after execution
-    print(state['execution_plan'])
     return {
-        "generate_questions": result  # we updating the chapter name here to the state 
+        "generate_questions": result,  # we updating the chapter name here to the state 
+        "quiz_main_answer":result
     }

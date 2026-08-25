@@ -42,6 +42,7 @@ class MongoDB:
         self.Chat_History = self.db["chat_history"]
         self.question_generator = self.db["Question_Generator"]
         self.summary_storage = self.db["summary"]
+        self.check_pointer_storage = self.db["Checkpointer_storage"]
 
         
 

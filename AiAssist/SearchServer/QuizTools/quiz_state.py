@@ -20,5 +20,6 @@ class QuizState(TypedDict):
     generate_questions: Any
 
     quiz_completed: bool # Whether the quiz has finished
+    quiz_main_answer: str
 
     execution_plan : list[str]

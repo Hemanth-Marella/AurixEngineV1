@@ -6,8 +6,10 @@ async def quiz_node(state: LanggraphState):
 
     try:
         result = await quiz_tool.ainvoke({'state':state})
-        print("quiz_node agent result is ",result)
-        state['execution_plan'].pop(0) # remove the node after execution
+
+        if result:
+            state['execution_plan'].pop(0)
+
         return {
             "quiz_result":result,
             "main_answer":result
@@ -17,4 +19,3 @@ async def quiz_node(state: LanggraphState):
         return {
             "error":str(e),
         }
-

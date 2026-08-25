@@ -9,6 +9,9 @@ async def ask_question_node(state: QuizState):
         "current_question": state["current_question"]
     })
 
+    state['execution_plan'].pop(0)
+
     return {
-        "question": result["question"]
+        "question": result["question"],
+        "quiz_main_answer":result['question']
     }
