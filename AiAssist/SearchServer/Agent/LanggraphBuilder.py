@@ -5,7 +5,7 @@ from ..LanggraphTools import LanggraphState,PlannerRouter
 from ..Agent.LangGraphDecisionAgent import langgrahDecisionAgent
 
 from ..LanggraphNodes import ChapterNameNode,SubTopicExplanationNode,SubTopicNode,PlannerNode,GenerationNode,MemoryNode,QuizNode,SummaryNode
-
+from ..Checkpointers.MongodbCheckpointer import create_checkpointer
 # from ..Agent.quiz_agent import quiz_agent_node
 
 # THIS CREATES AN EMPTY GRAPH NO NODES IS INVOLVED START -> END
@@ -89,4 +89,7 @@ graph_builder.add_edge("memory","Planner")
 # CREATE THE EXECUTABLE GRAPH
 # NODES ARE CONNECTED , EDGES ARE FIXED AND THE GRAPH IS READY TO RUN
 # this graph.compile will not share any values . It only builds the executable graph . 
-graph = graph_builder.compile()
+checkpointer = create_checkpointer()
+graph = graph_builder.compile(
+    checkpointer=checkpointer
+)

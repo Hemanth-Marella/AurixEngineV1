@@ -1,3 +1,5 @@
+## WITHOUT INTERRUPT
+
 from ..QuizTools.quiz_state import QuizState
 from ..QuizTools.AskQuestiontool import ask_question_tool
 

@@ -52,7 +52,7 @@ async def quiz_agent_node(state:quiz_state.QuizState):
 
                 User: Start a quiz.
                 Output:
-                ["generate_questions","question"]
+                ["generate_questions","question","user_answer"]
 
                 User: I answered the first question.
                 Output:
