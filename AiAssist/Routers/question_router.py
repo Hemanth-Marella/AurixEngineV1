@@ -293,13 +293,14 @@ async def user_question(request: QuestionRequest):
             initial_state,
             config=config
         )
+        # print("quiz router result is",result)
 
         ## TO CHECK HERE INTERRUPT IS HAPPENED OR NOT OK 
         # print("GRAPH RESULT:")
         # print(result)
 
         print("INTERRUPTS:")
-        print(result.get("__interrupt__"))
+        # print(result.get("__interrupt__"))
 
         interrupts = result.get("__interrupt__")
 
@@ -346,9 +347,7 @@ async def quiz_answer(request: QuizAnswerRequest):
         }
 
         result = await graph.ainvoke(
-            Command(
-                resume=request.answer
-            ),
+            Command(resume=request.answer),
             config=config
         )
 

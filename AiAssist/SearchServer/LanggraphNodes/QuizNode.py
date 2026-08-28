@@ -193,44 +193,45 @@ async def quiz_node(state: LanggraphState):
 
     if interrupts:
 
-        interrupt_value = (
-            interrupts[0].value
-        )
-        print(interrupt_value)
-
-        user_answer = interrupt({
-            "type": "quiz",
-            "message": interrupt_value
-        })
-
-        result = await quiz_graph.ainvoke(
-            Command(resume=user_answer),
-            config=quiz_config
-        )
-
-    while result.get("__interrupt__"):
-
-        interrupts = result.get("__interrupt__")
+        print("interrupt is happen in quiz")
 
         interrupt_value = (interrupts[0].value)
-
         print(interrupt_value)
+
         user_answer = interrupt({
             "type": "quiz",
             "message": interrupt_value
         })
+
+        print("in quiz after user_answer")
 
         result = await quiz_graph.ainvoke(
             Command(resume=user_answer),
             config=quiz_config
         )
 
+    # while result.get("__interrupt__"):
+    #     print("interrupt is happen in quiz while condition")
+
+    #     interrupts = result.get("__interrupt__")
+
+    #     interrupt_value = (interrupts[0].value)
+
+    #     print(interrupt_value)
+    #     user_answer = interrupt({
+    #         "type": "quiz",
+    #         "message": interrupt_value
+    #     })
+
+    #     result = await quiz_graph.ainvoke(
+    #         Command(resume=user_answer),
+    #         config=quiz_config
+    #     )
+
+    ## these are just to get execution plan from graph state 
     final_state = await quiz_graph.aget_state(config=quiz_config)
-
     values = final_state.values
-
     execution_plan = values.get("execution_plan",[])
-
     quiz_result = {
 
         "status": "completed",
@@ -241,16 +242,19 @@ async def quiz_node(state: LanggraphState):
         "execution_plan": execution_plan
     }
 
+    # this will implement if there no any execution plans
     if not execution_plan:
+        
+        state['execution_plan'].pop(0)
+        
         return {
-
             "quiz_result": quiz_result,
             "main_answer": quiz_result,
-            "execution_plan": []
+            "execution_plan": state['execution_plan']
         }
 
+    print("at return statement")
     return {
-
         "quiz_result": quiz_result,
         "main_answer": quiz_result,
         "execution_plan": execution_plan
