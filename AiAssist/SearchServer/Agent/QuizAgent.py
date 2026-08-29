@@ -8,17 +8,17 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-# llm = ChatGoogleGenerativeAI(
-#     model="gemini-2.5-flash",
-#     google_api_key=os.getenv("AURIX_GEMINI_KEY"),
-#     temperature=0.1,
-# )
-
-llm = ChatGroq(
-    model="openai/gpt-oss-20b",
-    api_key=os.getenv("AURIX_GROQ_API_KEY"),
-    temperature=0,
+llm = ChatGoogleGenerativeAI(
+    model="gemini-2.5-flash",
+    google_api_key=os.getenv("AURIX_GEMINI_KEY"),
+    temperature=0.1,
 )
+
+# llm = ChatGroq(
+#     model="openai/gpt-oss-20b",
+#     api_key=os.getenv("AURIX_GROQ_API_KEY"),
+#     temperature=0,
+# )
 
 async def quiz_agent_node(state:quiz_state.QuizState):
 
@@ -32,14 +32,14 @@ async def quiz_agent_node(state:quiz_state.QuizState):
                 1. generate_questions
                 - Generate quiz questions from the summary.
 
-                2. evaluate_answer
-                - Evaluate the user's answer for the current question.
+                2. question
+                - selecting question from mongodb.
 
-                3. next_question
-                - Move to the next question if available.
+                3. user_answer
+                - getting answer from user.
 
-                4. finish_quiz
-                - Finish the quiz and return the final score.
+                4. validate_answer
+                - validate the user answer with sumamry.
 
                 Rules:
                 - Select only from the available nodes.
@@ -52,19 +52,7 @@ async def quiz_agent_node(state:quiz_state.QuizState):
 
                 User: Start a quiz.
                 Output:
-                ["generate_questions","question","user_answer"]
-
-                User: I answered the first question.
-                Output:
-                ["evaluate_answer", "next_question"]
-
-                User: My answer is Photosynthesis.
-                Output:
-                ["evaluate_answer", "next_question"]
-
-                User: There are no more questions.
-                Output:
-                ["finish_quiz"]
+                ["generate_questions","question","user_answer","validate_answer"]
 
                 User:
                 {state['query']}

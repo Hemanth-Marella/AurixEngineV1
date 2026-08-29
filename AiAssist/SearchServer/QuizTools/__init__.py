@@ -3,3 +3,4 @@ from .QuestionGenerateTool import generate_questions_tool
 from .quiz_planner_router import QuizPlannerRouter
 from .AskQuestiontool import ask_question_tool
 from .AnswerTool import get_answer_tool
+from .AnswerValidateTool import answer_validate_tool

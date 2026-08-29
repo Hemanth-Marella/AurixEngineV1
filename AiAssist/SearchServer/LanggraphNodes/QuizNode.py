@@ -166,6 +166,7 @@ async def quiz_node(state: LanggraphState):
             "user_answer": "",
             "correct_answer": "",
             "quiz_main_answer": "",
+            "validate_answer":"",
             "generate_questions": [],
             "quiz_completed": False,
             "execution_plan": [],

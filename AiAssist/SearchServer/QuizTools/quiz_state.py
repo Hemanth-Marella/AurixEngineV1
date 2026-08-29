@@ -18,6 +18,7 @@ class QuizState(TypedDict):
     correct_answer: str # Correct answer for validation
 
     generate_questions: Any
+    validate_answer : Any
 
     quiz_completed: bool # Whether the quiz has finished
     quiz_main_answer: str
