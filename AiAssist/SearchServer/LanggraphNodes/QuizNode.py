@@ -254,7 +254,6 @@ async def quiz_node(state: LanggraphState):
             "execution_plan": state['execution_plan']
         }
 
-    print("at return statement")
     return {
         "quiz_result": quiz_result,
         "main_answer": quiz_result,

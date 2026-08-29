@@ -3,10 +3,13 @@ from ..QuizTools.quiz_state import QuizState
 
 async def answer_validate_node(state:QuizState):
 
-    result = await answer_validate_tool(
+    print("enter into validate node")
+
+    result = await answer_validate_tool.ainvoke(
         {
             "summary":state['summary'],
-            "user_name":state['user_answer']
+            "user_answer":state['user_answer'],
+            "question":state['question']
         }
     )
 

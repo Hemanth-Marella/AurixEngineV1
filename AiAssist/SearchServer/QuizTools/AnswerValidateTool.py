@@ -13,13 +13,16 @@ llm = ChatGoogleGenerativeAI(
 )
 
 @tool
-async def answer_validate_tool(summary,user_answer):
+async def answer_validate_tool(summary,user_answer,question):
     """
     Validate the user's answer against the summary.
     """
 
     prompt = f"""
             You are a quiz answer validator.
+
+            QUESTION:
+            {user_answer}
 
             SUMMARY:
             {summary}
