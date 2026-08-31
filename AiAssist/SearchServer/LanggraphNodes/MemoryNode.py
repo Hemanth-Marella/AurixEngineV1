@@ -14,7 +14,6 @@ async def memory_node(state: LanggraphState):
                 "result": state
             }
         )
-
         state["execution_plan"].pop(0)
 
         return {
@@ -22,7 +21,6 @@ async def memory_node(state: LanggraphState):
         }
 
     except Exception as e:
-
         return {
             "error": str(e)
         }

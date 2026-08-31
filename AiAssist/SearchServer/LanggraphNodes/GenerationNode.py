@@ -1,8 +1,7 @@
 from ..LanggraphTools import generation_tool,LanggraphState
 
-
 async def generation_node(state:LanggraphState):
-
+    print("enter into generation node")
     try:
 
         result = await generation_tool.ainvoke(

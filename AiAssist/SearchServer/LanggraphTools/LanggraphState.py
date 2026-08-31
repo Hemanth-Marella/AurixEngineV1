@@ -17,6 +17,7 @@ class LanggraphState(TypedDict):
     answer:str
     execution_plan: list[str]
     memory : list[dict]
+    memory_read : list[dict]
     quiz : str
     summary: str
     num_of_questions: int

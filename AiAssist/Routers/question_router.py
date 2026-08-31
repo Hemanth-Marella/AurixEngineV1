@@ -323,7 +323,7 @@ async def user_question(request: QuestionRequest):
         return {
             "status": "completed",
             "thread_id": request.file_hash,
-            "answer": result.get("answer"),
+            "answer": result.get("main_answer"),
             "execution_plan": result.get("execution_plan", [])
         }
 

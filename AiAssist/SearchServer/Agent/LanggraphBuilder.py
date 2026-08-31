@@ -4,7 +4,7 @@ from ..LanggraphTools import LanggraphState,PlannerRouter
 
 from ..Agent.LangGraphDecisionAgent import langgrahDecisionAgent
 
-from ..LanggraphNodes import ChapterNameNode,SubTopicExplanationNode,SubTopicNode,PlannerNode,GenerationNode,MemoryNode,QuizNode,SummaryNode
+from ..LanggraphNodes import ChapterNameNode,SubTopicExplanationNode,SubTopicNode,PlannerNode,GenerationNode,MemoryNode,QuizNode,SummaryNode,memory_read_node
 from ..Checkpointers.MongodbCheckpointer import create_checkpointer
 # from ..Agent.quiz_agent import quiz_agent_node
 
@@ -24,13 +24,14 @@ graph_builder.add_node("answer",GenerationNode.generation_node)
 graph_builder.add_node("memory",MemoryNode.memory_node)
 graph_builder.add_node("summary",SummaryNode.summary_node)
 graph_builder.add_node("quiz",QuizNode.quiz_node)
+graph_builder.add_node("memory_read",memory_read_node)
 
 
 
 # BASED ON ROUTER, THESE ARE EDGES TO CONNECT START AND AGENTIC NODE
 # WITH MEMORY
-graph_builder.add_edge(START,"agentic_node")
-# graph_builder.add_edge("memory", "agentic_node")
+graph_builder.add_edge(START,"memory_read")
+graph_builder.add_edge("memory_read", "agentic_node")
 
 # WITHOUT MEMORY
 # graph_builder.add_edge(START, "agentic_node")

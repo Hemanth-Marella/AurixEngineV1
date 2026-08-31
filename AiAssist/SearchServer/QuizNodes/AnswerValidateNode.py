@@ -15,5 +15,6 @@ async def answer_validate_node(state:QuizState):
 
     state['execution_plan'].pop(0)
     return {
-        "validate_answer":result
+        "validate_answer":result,
+        "quiz_main_answer":result
     }

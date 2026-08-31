@@ -50,6 +50,5 @@ async def answer_validate_tool(summary,user_answer,question):
             """
 
     result = await llm.ainvoke(prompt)
-    print("answer validate result",result)
 
     return result.content

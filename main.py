@@ -2,8 +2,7 @@ from fastapi import FastAPI
 from AiAssist.Routers.pdf_router import router as pdf_router
 from AiAssist.Routers.question_router import router as user_router
 from AiAssist.Routers.summary_router import router as summary_router
-from AiAssist.Routers.quiz_questions_router import router as quiz_router
-from AiAssist.Routers.quiz_answer_router import router as quiz_answer_router
+from AiAssist.Routers.generate_quiz_questions import router as quiz_router
 from AiAssist.api.middlewares import configure_middleware
 
 from dotenv import load_dotenv
@@ -19,4 +18,3 @@ app.include_router(pdf_router, prefix="/Aurix/api/v1")
 app.include_router(user_router,prefix="/Aurix/api/v1")
 app.include_router(summary_router,prefix="/Aurix/api/v1")
 app.include_router(quiz_router,prefix="/Aurix/api/v1")
-app.include_router(quiz_answer_router,prefix="/Aurix/api/v1")

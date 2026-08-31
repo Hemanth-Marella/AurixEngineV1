@@ -17,5 +17,6 @@ async def generation_tool(query: str,file_hash:str) -> str:
     service = generation_service.GenerationService(query)
 
     result = await service.generate_answer()
+    print(result)
     
     return result
