@@ -14,7 +14,7 @@ from langchain.tools import tool
 # - Quiz type : {state['quiz_type']}
 
 @tool
-async def generate_questions_tool(summary:str,chapter_name:str,file_hash:str,state):
+async def generate_questions_tool(summary:str,chapter_name:str,file_hash:str,state,num_of_question:int,difficulty:str,quiz_type:str):
 
     """
         Generate quiz questions from the provided chapter summary.
@@ -47,10 +47,10 @@ async def generate_questions_tool(summary:str,chapter_name:str,file_hash:str,sta
 
             ## Instructions
 
-            - Generate exactly 5 questions.
-            - Difficulty level: medium.
+            - Generate exactly {num_of_question} questions.
+            - Difficulty level: {difficulty}.
             - Chapter: {chapter_name}.
-            - Quiz type : short answer
+            - Quiz type : {quiz_type}
             - Questions must be based ONLY on the provided summary.
             - Do not use outside knowledge.
             - Cover different concepts from the summary.

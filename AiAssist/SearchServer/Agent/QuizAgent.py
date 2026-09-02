@@ -40,6 +40,8 @@ async def quiz_agent_node(state:quiz_state.QuizState):
 
                 4. validate_answer
                 - validate the user answer with sumamry.
+                5. input_validate
+                - validate the users input whether it is available or not
 
                 Rules:
                 - Select only from the available nodes.
@@ -52,7 +54,7 @@ async def quiz_agent_node(state:quiz_state.QuizState):
 
                 User: Start a quiz.
                 Output:
-                ["generate_questions","question","user_answer","validate_answer"]
+                ["input_validate","generate_questions","question","user_answer","validate_answer"]
 
                 User:
                 {state['query']}

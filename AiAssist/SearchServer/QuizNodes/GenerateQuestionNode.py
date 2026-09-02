@@ -10,7 +10,10 @@ async def generate_questions_node(state:QuizState):
             "summary": state["summary"],
             "chapter_name": state["chapter_name"],
             "file_hash":state['file_hash'],
-            "state":state
+            "state":state,
+            "num_of_question" : state['num_of_questions'],
+            "difficulty":state['difficulty'],
+            "quiz_type":state['quiz_type']
         }
     )
     state['execution_plan'].pop(0) # remove the node after execution

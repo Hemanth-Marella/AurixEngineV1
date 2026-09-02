@@ -20,9 +20,6 @@ class LanggraphState(TypedDict):
     memory_read : list[dict]
     quiz : str
     summary: str
-    num_of_questions: int
-    quiz_type: str
-    difficulty: str
     error: Optional[str]
     failed_node: Optional[str]
     quiz_result: dict | None

@@ -9,6 +9,7 @@ class QuizState(TypedDict):
     num_of_questions: int # total questions to ask
     quiz_type: str # mcq , true/False , fill in the blanks
     difficulty: str # hard , easy
+    input_validate:bool
 
     question: str
     current_question: int

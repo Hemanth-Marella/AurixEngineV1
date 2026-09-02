@@ -268,11 +268,6 @@ async def user_question(request: QuestionRequest):
 
         "quiz": "",
         "summary": "",
-
-        "num_of_questions": 0,
-        "quiz_type": "",
-        "difficulty": "",
-
         "error": None,
         "failed_node": None,
 
