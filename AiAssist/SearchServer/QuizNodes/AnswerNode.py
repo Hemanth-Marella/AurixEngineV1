@@ -8,7 +8,7 @@ async def answer_node(state: QuizState):
     # Pause here and wait for frontend/user
     user_answer = interrupt({
         "type": "quiz_answer",
-        "question": state["question"]
+        "question": state.get('question')
     })
 
     print("after interrupt")

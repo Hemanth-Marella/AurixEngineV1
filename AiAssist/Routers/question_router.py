@@ -242,11 +242,6 @@ class QuizAnswerRequest(BaseModel):
     answer: str
     thread_id: str
 
-
-# =========================================================
-# 1. START / NORMAL QUESTION ENDPOINT
-# =========================================================
-
 @router.post("/question")
 async def user_question(request: QuestionRequest):
     print("router is working")
@@ -276,8 +271,6 @@ async def user_question(request: QuestionRequest):
         "main_answer": ""
     }
 
-        # IMPORTANT:
-        # Every execution needs a thread_id
         config = {
             "configurable": {
                 "thread_id": request.file_hash
@@ -288,14 +281,14 @@ async def user_question(request: QuestionRequest):
             initial_state,
             config=config
         )
-        # print("quiz router result is",result)
 
-        ## TO CHECK HERE INTERRUPT IS HAPPENED OR NOT OK 
         # print("GRAPH RESULT:")
         # print(result)
 
         print("INTERRUPTS:")
         # print(result.get("__interrupt__"))
+
+        # interrupts = result.get("__interrupt__")
 
         interrupts = result.get("__interrupt__")
 
@@ -303,6 +296,7 @@ async def user_question(request: QuestionRequest):
 
             print("interrupt is happen")
 
+            # interrupt value should return entire interrupt object
             interrupt_value = interrupts[0].value
 
             return {
@@ -324,6 +318,7 @@ async def user_question(request: QuestionRequest):
 
     except Exception as e:
         print("error came")
+        print("error is",e)
 
         return {
             "status": "error",
@@ -334,7 +329,6 @@ async def user_question(request: QuestionRequest):
 async def quiz_answer(request: QuizAnswerRequest):
 
     try:
-
         config = {
             "configurable": {
                 "thread_id": request.thread_id
@@ -348,7 +342,9 @@ async def quiz_answer(request: QuizAnswerRequest):
 
         interrupts = result.get("__interrupt__")
 
+        # once enter into resume router here it will check whether the interrupt is happen inside a graph or not it wont go inside user question again
         if interrupts:
+            print("interrupt is happen inside resume router")
 
             interrupt_value = interrupts[0].value
 

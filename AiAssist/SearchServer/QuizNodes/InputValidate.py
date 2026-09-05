@@ -4,7 +4,9 @@ from langgraph.types import interrupt
 
 async def input_validate(state: QuizState):
 
-    if not state["num_of_questions"]:
+    print("graph chapter name",state.get('chapter_name'))
+
+    if not state.get("num_of_questions"):
         num_of_questions = interrupt({
             "type": "quiz_answer",
             "question": "How many questions do you want?"
@@ -14,9 +16,9 @@ async def input_validate(state: QuizState):
             "num_of_questions": num_of_questions
         }
 
-    elif not state["difficulty"]:
-
+    if not state.get("difficulty"):
         print(state["num_of_questions"])
+
         difficulty = interrupt({
             "type": "quiz_answer",
             "question": "What difficulty do you want? (easy/medium/hard)"
@@ -26,7 +28,7 @@ async def input_validate(state: QuizState):
             "difficulty": difficulty
         }
 
-    elif not state["quiz_type"]:
+    if not state.get("quiz_type"):
         quiz_type = interrupt({
             "type": "quiz_answer",
             "question": "Which type of quiz do you want? (shortanswer/mcq/fill_in_blank)"
@@ -36,11 +38,10 @@ async def input_validate(state: QuizState):
             "quiz_type": quiz_type
         }
 
-    else:
-        execution_plan = state["execution_plan"].copy()
-        execution_plan.pop(0)
+    execution_plan = state["execution_plan"].copy()
+    execution_plan.pop(0)
 
-        return {
-            "execution_plan": execution_plan,
-            "input_validate": True
-        }
+    return {
+        "execution_plan": execution_plan,
+        "input_validate": True
+    }

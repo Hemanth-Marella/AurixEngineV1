@@ -23,5 +23,6 @@ class QuizState(TypedDict):
 
     quiz_completed: bool # Whether the quiz has finished
     quiz_main_answer: str
+    main_answer:str
 
     execution_plan : list[str]

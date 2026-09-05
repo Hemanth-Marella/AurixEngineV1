@@ -7,13 +7,12 @@ async def generate_questions_node(state:QuizState):
 
     result = await generate_questions_tool.ainvoke(
         {
-            "summary": state["summary"],
-            "chapter_name": state["chapter_name"],
-            "file_hash":state['file_hash'],
-            "state":state,
-            "num_of_question" : state['num_of_questions'],
-            "difficulty":state['difficulty'],
-            "quiz_type":state['quiz_type']
+            "summary": state.get("summary"),
+            "chapter_name": state.get('chapter_name'),
+            "file_hash":state.get('file_hash'),
+            "num_of_question" : state.get('num_of_questions'),
+            "difficulty":state.get('difficulty'),
+            "quiz_type":state.get('quiz_type')
         }
     )
     state['execution_plan'].pop(0) # remove the node after execution

@@ -8,17 +8,17 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-llm = ChatGoogleGenerativeAI(
-    model="gemini-2.5-flash",
-    google_api_key=os.getenv("AURIX_GEMINI_KEY"),
-    temperature=0.1,
-)
-
-# llm = ChatGroq(
-#     model="openai/gpt-oss-20b",
-#     api_key=os.getenv("AURIX_GROQ_API_KEY"),
-#     temperature=0,
+# llm = ChatGoogleGenerativeAI(
+#     model="gemini-2.5-flash",
+#     google_api_key=os.getenv("AURIX_GEMINI_KEY"),
+#     temperature=0.1,
 # )
+
+llm = ChatGroq(
+    model="openai/gpt-oss-20b",
+    api_key=os.getenv("AURIX_GROQ_API_KEY"),
+    temperature=0,
+)
 
 async def quiz_agent_node(state:quiz_state.QuizState):
 

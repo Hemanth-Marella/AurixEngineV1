@@ -84,24 +84,6 @@ async def quiz_node(state: LanggraphState):
             config=quiz_config
         )
 
-    # while result.get("__interrupt__"):
-    #     print("interrupt is happen in quiz while condition")
-
-    #     interrupts = result.get("__interrupt__")
-
-    #     interrupt_value = (interrupts[0].value)
-
-    #     print(interrupt_value)
-    #     user_answer = interrupt({
-    #         "type": "quiz",
-    #         "message": interrupt_value
-    #     })
-
-    #     result = await quiz_graph.ainvoke(
-    #         Command(resume=user_answer),
-    #         config=quiz_config
-    #     )
-
     ## these are just to get execution plan from graph state 
     final_state = await quiz_graph.aget_state(config=quiz_config)
     values = final_state.values

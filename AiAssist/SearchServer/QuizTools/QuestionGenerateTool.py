@@ -14,13 +14,17 @@ from langchain.tools import tool
 # - Quiz type : {state['quiz_type']}
 
 @tool
-async def generate_questions_tool(summary:str,chapter_name:str,file_hash:str,state,num_of_question:int,difficulty:str,quiz_type:str):
+async def generate_questions_tool(summary:str,chapter_name:str,file_hash:str,num_of_question:int,difficulty:str,quiz_type:str):
 
     """
         Generate quiz questions from the provided chapter summary.
     """
 
     mongo_db = MongoDB()
+
+    print("num",num_of_question)
+    print("easy",difficulty)
+    print("type",quiz_type)
 
     llm = ChatGoogleGenerativeAI(
         model="gemini-2.5-flash",
@@ -33,6 +37,7 @@ async def generate_questions_tool(summary:str,chapter_name:str,file_hash:str,sta
     if generate_question:
         questions = generate_question["questions"]
         return questions
+
 
     else:
 

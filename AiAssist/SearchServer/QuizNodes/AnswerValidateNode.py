@@ -7,9 +7,9 @@ async def answer_validate_node(state:QuizState):
 
     result = await answer_validate_tool.ainvoke(
         {
-            "summary":state['summary'],
-            "user_answer":state['user_answer'],
-            "question":state['question']
+            "summary":state.get('summary'),
+            "user_answer":state.get('user_answer'),
+            "question":state.get('question')
         }
     )
 

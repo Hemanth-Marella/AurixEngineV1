@@ -4,7 +4,10 @@ from ..LanggraphTools import LanggraphState,PlannerRouter
 
 from ..Agent.LangGraphDecisionAgent import langgrahDecisionAgent
 
-from ..LanggraphNodes import ChapterNameNode,SubTopicExplanationNode,SubTopicNode,PlannerNode,GenerationNode,MemoryNode,QuizNode,SummaryNode,memory_read_node
+# newly added
+from ..Agent.QuizGraph import quiz_graph
+
+from ..LanggraphNodes import ChapterNameNode,SubTopicExplanationNode,SubTopicNode,PlannerNode,GenerationNode,MemoryNode,SummaryNode,memory_read_node
 from ..Checkpointers.MongodbCheckpointer import create_checkpointer
 # from ..Agent.quiz_agent import quiz_agent_node
 
@@ -23,7 +26,9 @@ graph_builder.add_node("explanations",SubTopicExplanationNode.sub_topic_explanat
 graph_builder.add_node("answer",GenerationNode.generation_node)
 graph_builder.add_node("memory",MemoryNode.memory_node)
 graph_builder.add_node("summary",SummaryNode.summary_node)
-graph_builder.add_node("quiz",QuizNode.quiz_node)
+# graph_builder.add_node("quiz",QuizNode.quiz_node)
+#newly added
+graph_builder.add_node("quiz",quiz_graph)
 graph_builder.add_node("memory_read",memory_read_node)
 
 
