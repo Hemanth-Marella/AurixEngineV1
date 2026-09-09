@@ -317,6 +317,15 @@ async def user_question(request: QuestionRequest):
         }
 
     except Exception as e:
+
+        import traceback
+                
+        print("========== ERROR CAME ==========")
+        print("Exception type:", type(e).__name__)
+        print("Exception repr:", repr(e))
+        print("Exception args:", e.args)
+        traceback.print_exc()
+        print("================================")
         print("error came")
         print("error is",e)
 

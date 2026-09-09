@@ -1,7 +1,6 @@
 from ..QuizNodes import generate_questions_node,QuizPlannerNode,ask_question_node,answer_node,answer_validate_node,input_validate
 from langgraph.graph import StateGraph, START, END
 from .QuizAgent import quiz_agent_node
-from ..Checkpointers.MongodbCheckpointer import create_checkpointer
 
 
 from ..QuizTools import QuizState,QuizPlannerRouter
@@ -38,8 +37,4 @@ quiz_graph_builder.add_edge("user_answer","quiz_planner")
 quiz_graph_builder.add_edge("validate_answer","quiz_planner")
 quiz_graph_builder.add_edge("input_validate","quiz_planner")
 
-checkpointer = create_checkpointer()
-
-quiz_graph = quiz_graph_builder.compile(
-    checkpointer=checkpointer
-)
+quiz_graph = quiz_graph_builder.compile()

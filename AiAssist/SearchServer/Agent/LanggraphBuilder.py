@@ -8,7 +8,7 @@ from ..Agent.LangGraphDecisionAgent import langgrahDecisionAgent
 from ..Agent.QuizGraph import quiz_graph
 
 from ..LanggraphNodes import ChapterNameNode,SubTopicExplanationNode,SubTopicNode,PlannerNode,GenerationNode,MemoryNode,SummaryNode,memory_read_node
-from ..Checkpointers.MongodbCheckpointer import create_checkpointer
+from ..MongoDb.PostgreesCheckpointer import create_checkpointer
 # from ..Agent.quiz_agent import quiz_agent_node
 
 # THIS CREATES AN EMPTY GRAPH NO NODES IS INVOLVED START -> END
