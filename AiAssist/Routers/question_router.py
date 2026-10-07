@@ -296,7 +296,7 @@ async def user_question(request: QuestionRequest):
 
             print("interrupt is happen")
 
-            # interrupt value should return entire interrupt object
+            # interrupt value return entire interrupt
             interrupt_value = interrupts[0].value
 
             return {
@@ -320,12 +320,11 @@ async def user_question(request: QuestionRequest):
 
         import traceback
                 
-        print("========== ERROR CAME ==========")
+        print(" ERROR CAME ")
         print("Exception type:", type(e).__name__)
         print("Exception repr:", repr(e))
         print("Exception args:", e.args)
         traceback.print_exc()
-        print("================================")
         print("error came")
         print("error is",e)
 
